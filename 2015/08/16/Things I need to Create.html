@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+		<head>
+    	<title>Things I Need To Create For This Blog</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="/css/tufte.css" rel="stylesheet"  />
+		<link href="/css/tufte-custom.css" rel="stylesheet" />
+		<link href="/css/tufte-syntax.css" rel="stylesheet" />
+	</head>	
+
+<body>
+	<article>
+				<a href="/"><h1>Clutching at Security Blankets</h1></a>
+		<p class="subtitle"><a href="mailto:jeremyDELETEME@tavan.com">Jeremy Tavan</a></p>
+		<section>
+			<h2>Things I Need To Create For This Blog</h2>
+			<p>16 August 2015</p>
+		</section>
+		<p>I’m having a good time figuring out how to build a static page blog using <a href="http://jekyllrb.com/">Jekyll</a>, but there are a few pieces missing for it to really do what I need.</p>
+
+<p>First, I’m trying to use <a href="http://www.daveliepmann.com/tufte-css/">Tufte.css</a> for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.<label for="sn-4fiweehw0i86" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-4fiweehw0i86" class="margin-toggle" /><span class="sidenote">That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. </span> <strong>Update</strong>: Done. That was easy. See this post for details how.</p>
+
+<p>So it looks like I’m going to need to build a custom filter to allow me to use simple directives and have them convert into appropriate sidenote and marginnote HTML.</p>
+
+<p>Second, given how much of the work I do is in BigFix Relevance Language and BigFix Action Script, I’m going to have to extend the <a href="http://pygments.org/">pygments</a> syntax highlighter with a custom language lexer for those. And then there will be the fun of designing a syntax highlighting stylesheet that doesn’t pollute my pages with a rainbow of fruity highlighting modes.</p>
+
+<p>Both of these things are fairly new to me, so I’m looking forward to figuring out how to do it.</p>
+
+	</article>
+	<p>This article is tagged: <span class="taglist">
+	
+	</span></p>
+		
+</body>
+</html>

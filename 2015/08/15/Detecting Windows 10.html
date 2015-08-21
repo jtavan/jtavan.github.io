@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+		<head>
+    	<title>Detecting Windows 10</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="/css/tufte.css" rel="stylesheet"  />
+		<link href="/css/tufte-custom.css" rel="stylesheet" />
+		<link href="/css/tufte-syntax.css" rel="stylesheet" />
+	</head>	
+
+<body>
+	<article>
+				<a href="/"><h1>Clutching at Security Blankets</h1></a>
+		<p class="subtitle"><a href="mailto:jeremyDELETEME@tavan.com">Jeremy Tavan</a></p>
+		<section>
+			<h2>Detecting Windows 10</h2>
+			<p>15 August 2015</p>
+		</section>
+		<p>Let’s say you’ve got an endpoint management solution in place that doesn’t yet understand Windows 10 and instead reports it as various flavors of Windows 8 or 8.1. How do you detect what flavor of Windows really is running on the system?</p>
+
+<pre><code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProductName
+</code></pre>
+
+<p>Nothing Earth-shattering about this one, but it was a simple solution to the problem. In BigFix Relevance, we can use the following (though it will be unnecessary once we’re running the version that has native detection for Windows 10):</p>
+
+<pre>
+(exists (if (x64 of operating system) then 
+            unique values of (it as string as trimmed string) 
+                of values "ProductName" 
+                    of keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion" 
+                        of (x32 registries;x64 registries) 
+        else unique values of (it as string as trimmed string) 
+            of values "ProductName" of keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion" 
+                of registry) 
+ whose (it starts with "Windows 10"))
+</pre>
+
+	</article>
+	<p>This article is tagged: <span class="taglist">
+	
+		<a href="/tag/bigfix">bigfix</a>
+	
+		<a href="/tag/code">code</a>
+	
+		<a href="/tag/windows">windows</a>
+	
+	</span></p>
+		
+</body>
+</html>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+  
+    <title>Clutching at Security Blankets</title>
+	
+    <description>Jeremy Tavan&amp;rsquo;s Security Blog</description>
+	<link>http://security.jeremy.tavan.com</link>
+    <language>en-us</language>
+	<managingEditor>Jeremy Tavan</managingEditor>
+
+    <atom:link href="http://security.jeremy.tavan.com/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Creating a custom liquid tag for Jekyll</title>
+        <author>Jeremy Tavan</author>
+        <description>&lt;p&gt;In &lt;a href=&quot;/2015/08/16/Things%20I%20need%20to%20Create.html&quot;&gt;Things I Need To Create For This Blog&lt;/a&gt; I mentioned that I needed an easier way to create sidenotes than pasting in a bunch of ugly HTML in my Markdown. So, following the super simple template on the Jekyll page and not knowing any Ruby, I created a Sidenote liquid tag.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;securerandom&amp;#39;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Jekyll&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SidenoteTag&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Liquid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Tag&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokens&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;super&lt;/span&gt;
+      &lt;span class=&quot;vi&quot;&gt;@text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	  &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SecureRandom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;36&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;36&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rjust&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;label for=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sn-&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; class=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;margin-toggle sidenote-number&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;gt;&amp;lt;/label&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;s2&quot;&gt;&amp;lt;input type=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;checkbox&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; id=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sn-&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; class=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;margin-toggle&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&amp;gt;&amp;lt;span class=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sidenote&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&amp;quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@text&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;lt;/span&amp;gt;&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;no&quot;&gt;Liquid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Template&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;register_tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;sidenote&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Jekyll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SidenoteTag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now all I need to do to create a sidenote is to put in a liquid tag:&lt;/p&gt;
+&lt;pre&gt;{.% sidenote And sidenote text goes here %}&lt;/pre&gt;
+&lt;p&gt;and it gets converted into a proper sidenote.&lt;label for=&quot;sn-5ttfxkto6x15&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;sn-5ttfxkto6x15&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;Just like this. &lt;/span&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 20 Aug 2015 00:00:00 -0700</pubDate>
+        <link>http://security.jeremy.tavan.com//2015/08/20/Custom%20Jekyll%20liquid%20tag.html</link>
+        <guid isPermaLink="true">http://security.jeremy.tavan.com//2015/08/20/Custom%20Jekyll%20liquid%20tag.html</guid>
+      </item>
+    
+      <item>
+        <title>Things I Need To Create For This Blog</title>
+        <author>Jeremy Tavan</author>
+        <description>&lt;p&gt;I’m having a good time figuring out how to build a static page blog using &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;, but there are a few pieces missing for it to really do what I need.&lt;/p&gt;
+
+&lt;p&gt;First, I’m trying to use &lt;a href=&quot;http://www.daveliepmann.com/tufte-css/&quot;&gt;Tufte.css&lt;/a&gt; for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.&lt;label for=&quot;sn-4fiweehw0i86&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;sn-4fiweehw0i86&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. &lt;/span&gt; &lt;strong&gt;Update&lt;/strong&gt;: Done. That was easy. See this post for details how.&lt;/p&gt;
+
+&lt;p&gt;So it looks like I’m going to need to build a custom filter to allow me to use simple directives and have them convert into appropriate sidenote and marginnote HTML.&lt;/p&gt;
+
+&lt;p&gt;Second, given how much of the work I do is in BigFix Relevance Language and BigFix Action Script, I’m going to have to extend the &lt;a href=&quot;http://pygments.org/&quot;&gt;pygments&lt;/a&gt; syntax highlighter with a custom language lexer for those. And then there will be the fun of designing a syntax highlighting stylesheet that doesn’t pollute my pages with a rainbow of fruity highlighting modes.&lt;/p&gt;
+
+&lt;p&gt;Both of these things are fairly new to me, so I’m looking forward to figuring out how to do it.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 16 Aug 2015 00:00:00 -0700</pubDate>
+        <link>http://security.jeremy.tavan.com//2015/08/16/Things%20I%20need%20to%20Create.html</link>
+        <guid isPermaLink="true">http://security.jeremy.tavan.com//2015/08/16/Things%20I%20need%20to%20Create.html</guid>
+      </item>
+    
+      <item>
+        <title>Detecting Windows 10</title>
+        <author>Jeremy Tavan</author>
+        <description>&lt;p&gt;Let’s say you’ve got an endpoint management solution in place that doesn’t yet understand Windows 10 and instead reports it as various flavors of Windows 8 or 8.1. How do you detect what flavor of Windows really is running on the system?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProductName
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nothing Earth-shattering about this one, but it was a simple solution to the problem. In BigFix Relevance, we can use the following (though it will be unnecessary once we’re running the version that has native detection for Windows 10):&lt;/p&gt;
+
+&lt;pre&gt;
+(exists (if (x64 of operating system) then 
+            unique values of (it as string as trimmed string) 
+                of values &quot;ProductName&quot; 
+                    of keys &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot; 
+                        of (x32 registries;x64 registries) 
+        else unique values of (it as string as trimmed string) 
+            of values &quot;ProductName&quot; of keys &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot; 
+                of registry) 
+ whose (it starts with &quot;Windows 10&quot;))
+&lt;/pre&gt;
+</description>
+        <pubDate>Sat, 15 Aug 2015 00:00:00 -0700</pubDate>
+        <link>http://security.jeremy.tavan.com//2015/08/15/Detecting%20Windows%2010.html</link>
+        <guid isPermaLink="true">http://security.jeremy.tavan.com//2015/08/15/Detecting%20Windows%2010.html</guid>
+      </item>
+    
+      <item>
+        <title>Here we go!</title>
+        <author>Jeremy Tavan</author>
+        <description>&lt;p&gt;So, I&amp;#8217;ve read several discussions about how &lt;!--excerpt.start--&gt;I really should be recording things I do and things I learn in a journal to show as proof that I&amp;#8217;m actually doing and learning things&lt;!--excerpt.end--&gt;. That sounded like good advice, and so I&amp;#8217;ve put together this blog. I&amp;#8217;m going to record my experiences doing security-related stuff at a large research university. It&amp;#8217;s a really challenging environment, and I&amp;#8217;m very glad that I spent seven years working all across the university in a client-oriented support role before pivoting to Information Security. Without the contacts and context, I&amp;#8217;d be completely adrift.&lt;/p&gt;</description>
+        <pubDate>Mon, 10 Aug 2015 00:00:00 -0700</pubDate>
+        <link>http://security.jeremy.tavan.com//2015/08/10/Here%20we%20go.html</link>
+        <guid isPermaLink="true">http://security.jeremy.tavan.com//2015/08/10/Here%20we%20go.html</guid>
+      </item>
+    
+  </channel>
+</rss>

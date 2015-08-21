@@ -1,0 +1,16 @@
+/* This file holds all of my personal customizations to the stock tufte.css */
+
+p.subtitle > a { border-bottom: none;}
+
+.page_number { 
+	margin-left: 2em;
+	margin-right: 2em;
+}
+
+.taglist { 
+	font-style: italic;
+}
+
+.highlighted {
+	color: #f00000;
+}
