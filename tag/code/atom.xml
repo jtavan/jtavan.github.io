@@ -5,11 +5,11 @@
     <title>Clutching at Security Blankets - Tag: code</title>
    
     <description>Jeremy Tavan&amp;rsquo;s Security Blog</description>
-	<link>http://security.jeremy.tavan.com</link>
+	<link>http://blog.jeremy.tavan.com</link>
     <language>en-us</language>
 	<managingEditor>Jeremy Tavan</managingEditor>
 
-    <atom:link href="http://security.jeremy.tavan.com/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://blog.jeremy.tavan.com/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
         <title>Creating a custom liquid tag for Jekyll</title>
@@ -17,35 +17,35 @@
         <description><![CDATA[
 		   <p>In <a href="/2015/08/16/Things%20I%20need%20to%20Create.html">Things I Need To Create For This Blog</a> I mentioned that I needed an easier way to create sidenotes than pasting in a bunch of ugly HTML in my Markdown. So, following the super simple template on the Jekyll page and not knowing any Ruby, I created a Sidenote liquid tag.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;securerandom&#39;</span>
-
-<span class="k">module</span> <span class="nn">Jekyll</span>
-  <span class="k">class</span> <span class="nc">SidenoteTag</span> <span class="o">&lt;</span> <span class="no">Liquid</span><span class="o">::</span><span class="no">Tag</span>
-
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">tokens</span><span class="p">)</span>
-      <span class="k">super</span>
-      <span class="vi">@text</span> <span class="o">=</span> <span class="n">text</span>
-    <span class="k">end</span>
-
-    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
-	  <span class="nb">id</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">random_number</span><span class="p">(</span><span class="mi">36</span><span class="o">**</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
-      <span class="s2">&quot;&lt;label for=</span><span class="se">\&quot;</span><span class="s2">sn-</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> class=</span><span class="se">\&quot;</span><span class="s2">margin-toggle sidenote-number</span><span class="se">\&quot;</span><span class="s2">&gt;&lt;/label&gt;</span>
-<span class="s2">&lt;input type=</span><span class="se">\&quot;</span><span class="s2">checkbox</span><span class="se">\&quot;</span><span class="s2"> id=</span><span class="se">\&quot;</span><span class="s2">sn-</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> class=</span><span class="se">\&quot;</span><span class="s2">margin-toggle</span><span class="se">\&quot;</span><span class="s2">/&gt;&lt;span class=</span><span class="se">\&quot;</span><span class="s2">sidenote</span><span class="se">\&quot;</span><span class="s2">&gt;</span><span class="si">#{</span><span class="vi">@text</span><span class="si">}</span><span class="s2">&lt;/span&gt;&quot;</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="no">Liquid</span><span class="o">::</span><span class="no">Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;sidenote&#39;</span><span class="p">,</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">SidenoteTag</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="lineno"> 1</span> <span class="nb">require</span> <span class="s1">&#39;securerandom&#39;</span>
+<span class="lineno"> 2</span> 
+<span class="lineno"> 3</span> <span class="k">module</span> <span class="nn">Jekyll</span>
+<span class="lineno"> 4</span>   <span class="k">class</span> <span class="nc">SidenoteTag</span> <span class="o">&lt;</span> <span class="no">Liquid</span><span class="o">::</span><span class="no">Tag</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span>     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">tokens</span><span class="p">)</span>
+<span class="lineno"> 7</span>       <span class="k">super</span>
+<span class="lineno"> 8</span>       <span class="vi">@text</span> <span class="o">=</span> <span class="n">text</span>
+<span class="lineno"> 9</span>     <span class="k">end</span>
+<span class="lineno">10</span> 
+<span class="lineno">11</span>     <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+<span class="lineno">12</span> 	  <span class="nb">id</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">random_number</span><span class="p">(</span><span class="mi">36</span><span class="o">**</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+<span class="lineno">13</span>       <span class="s2">&quot;&lt;label for=</span><span class="se">\&quot;</span><span class="s2">sn-</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> class=</span><span class="se">\&quot;</span><span class="s2">margin-toggle sidenote-number</span><span class="se">\&quot;</span><span class="s2">&gt;&lt;/label&gt;</span>
+<span class="lineno">14</span> <span class="s2">&lt;input type=</span><span class="se">\&quot;</span><span class="s2">checkbox</span><span class="se">\&quot;</span><span class="s2"> id=</span><span class="se">\&quot;</span><span class="s2">sn-</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> class=</span><span class="se">\&quot;</span><span class="s2">margin-toggle</span><span class="se">\&quot;</span><span class="s2">/&gt;&lt;span class=</span><span class="se">\&quot;</span><span class="s2">sidenote</span><span class="se">\&quot;</span><span class="s2">&gt;</span><span class="si">#{</span><span class="vi">@text</span><span class="si">}</span><span class="s2">&lt;/span&gt;&quot;</span>
+<span class="lineno">15</span>     <span class="k">end</span>
+<span class="lineno">16</span>   <span class="k">end</span>
+<span class="lineno">17</span> <span class="k">end</span>
+<span class="lineno">18</span> 
+<span class="lineno">19</span> <span class="no">Liquid</span><span class="o">::</span><span class="no">Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;sidenote&#39;</span><span class="p">,</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">SidenoteTag</span><span class="p">)</span></code></pre></div>
 
 <p>Now all I need to do to create a sidenote is to put in a liquid tag:</p>
 <pre>{.% sidenote And sidenote text goes here %}</pre>
-<p>and it gets converted into a proper sidenote.<label for="sn-5ttfxkto6x15" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-5ttfxkto6x15" class="margin-toggle" /><span class="sidenote">Just like this. </span></p>
+<p>and it gets converted into a proper sidenote.<label for="sn-4ibouuardpae" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-4ibouuardpae" class="margin-toggle" /><span class="sidenote">Just like this. </span></p>
 
 		]]></description>
         <pubDate>Thu, 20 Aug 2015 00:00:00 -0700</pubDate>
-        <link>http://security.jeremy.tavan.com//2015/08/20/Custom%20Jekyll%20liquid%20tag.html</link>
-        <guid isPermaLink="true">http://security.jeremy.tavan.com//2015/08/20/Custom%20Jekyll%20liquid%20tag.html</guid>
+        <link>http://blog.jeremy.tavan.com//2015/08/20/Custom%20Jekyll%20liquid%20tag.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/20/Custom%20Jekyll%20liquid%20tag.html</guid>
       </item>
     
       <item>
@@ -54,8 +54,8 @@
         <description><![CDATA[
 		   <p>I’m having a good time figuring out how to build a static page blog using <a href="http://jekyllrb.com/">Jekyll</a>, but there are a few pieces missing for it to really do what I need.</p>
 
-<p>First, I’m trying to use <a href="http://www.daveliepmann.com/tufte-css/">Tufte.css</a> for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.<label for="sn-4fiweehw0i86" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-4fiweehw0i86" class="margin-toggle" /><span class="sidenote">That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. </span> <strong>Update</strong>: Done. That was easy. See this post for details how.</p>
+<p>First, I’m trying to use <a href="http://www.daveliepmann.com/tufte-css/">Tufte.css</a> for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.<label for="sn-knnfo598h3rp" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-knnfo598h3rp" class="margin-toggle" /><span class="sidenote">That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. </span> <strong>Update</strong>: Done. That was easy. See this post for details how.</p>
 
 <p>So it looks like I’m going to need to build a custom filter to allow me to use simple directives and have them convert into appropriate sidenote and marginnote HTML.</p>
 
@@ -65,8 +65,8 @@
 
 		]]></description>
         <pubDate>Sun, 16 Aug 2015 00:00:00 -0700</pubDate>
-        <link>http://security.jeremy.tavan.com//2015/08/16/Things%20I%20need%20to%20Create.html</link>
-        <guid isPermaLink="true">http://security.jeremy.tavan.com//2015/08/16/Things%20I%20need%20to%20Create.html</guid>
+        <link>http://blog.jeremy.tavan.com//2015/08/16/Things%20I%20need%20to%20Create.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/16/Things%20I%20need%20to%20Create.html</guid>
       </item>
     
       <item>
@@ -80,33 +80,31 @@
 
 <p>Nothing Earth-shattering about this one, but it was a simple solution to the problem. In BigFix Relevance, we can use the following (though it will be unnecessary once we’re running the version that has native detection for Windows 10):</p>
 
-<pre>
-(exists (if (x64 of operating system) then 
-            unique values of (it as string as trimmed string) 
-                of values "ProductName" 
-                    of keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion" 
-                        of (x32 registries;x64 registries) 
-        else unique values of (it as string as trimmed string) 
-            of values "ProductName" of keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion" 
-                of registry) 
- whose (it starts with "Windows 10"))
-</pre>
+<div class="highlight"><pre><code class="language-scheme" data-lang="scheme"><span class="lineno">1</span> <span class="p">(</span><span class="nf">exists</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">x64</span> <span class="nv">of</span> <span class="nv">operating</span> <span class="nv">system</span><span class="p">)</span> <span class="nv">then</span> 
+<span class="lineno">2</span>             <span class="nv">unique</span> <span class="nv">values</span> <span class="nv">of</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">as</span> <span class="nv">string</span> <span class="nv">as</span> <span class="nv">trimmed</span> <span class="nv">string</span><span class="p">)</span> 
+<span class="lineno">3</span>                 <span class="nv">of</span> <span class="nv">values</span> <span class="s">&quot;ProductName&quot;</span> 
+<span class="lineno">4</span>                     <span class="nv">of</span> <span class="nv">keys</span> <span class="s">&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot;</span> 
+<span class="lineno">5</span>                         <span class="nv">of</span> <span class="p">(</span><span class="nf">x32</span> <span class="nv">registries</span><span class="c1">;x64 registries) </span>
+<span class="lineno">6</span>         <span class="k">else </span><span class="nv">unique</span> <span class="nv">values</span> <span class="nv">of</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">as</span> <span class="nv">string</span> <span class="nv">as</span> <span class="nv">trimmed</span> <span class="nv">string</span><span class="p">)</span> 
+<span class="lineno">7</span>             <span class="nv">of</span> <span class="nv">values</span> <span class="s">&quot;ProductName&quot;</span> <span class="nv">of</span> <span class="nv">keys</span> <span class="s">&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot;</span> 
+<span class="lineno">8</span>                 <span class="nv">of</span> <span class="nv">registry</span><span class="p">)</span> 
+<span class="lineno">9</span>  <span class="nv">whose</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">starts</span> <span class="nv">with</span> <span class="s">&quot;Windows 10&quot;</span><span class="p">))</span></code></pre></div>
 
 		]]></description>
         <pubDate>Sat, 15 Aug 2015 00:00:00 -0700</pubDate>
-        <link>http://security.jeremy.tavan.com//2015/08/15/Detecting%20Windows%2010.html</link>
-        <guid isPermaLink="true">http://security.jeremy.tavan.com//2015/08/15/Detecting%20Windows%2010.html</guid>
+        <link>http://blog.jeremy.tavan.com//2015/08/15/Detecting%20Windows%2010.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/15/Detecting%20Windows%2010.html</guid>
       </item>
     
       <item>
         <title>Here we go!</title>
         <author>Jeremy Tavan</author>
         <description><![CDATA[
-		   <p>So, I&#8217;ve read several discussions about how <!--excerpt.start-->I really should be recording things I do and things I learn in a journal to show as proof that I&#8217;m actually doing and learning things<!--excerpt.end-->. That sounded like good advice, and so I&#8217;ve put together this blog. I&#8217;m going to record my experiences doing security-related stuff at a large research university. It&#8217;s a really challenging environment, and I&#8217;m very glad that I spent seven years working all across the university in a client-oriented support role before pivoting to Information Security. Without the contacts and context, I&#8217;d be completely adrift.</p>
+		   <p>So, I&#8217;ve read several discussions about how <!--excerpt.start-->I really should be recording things I do and things I learn in a journal to show as proof that I&#8217;m actually doing and learning things<!--excerpt.end-->. That sounded like good advice, and so I&#8217;ve put together this blog. I&#8217;m going to record my experiences doing security-related stuff at a large research university. I&#8217;ll also document anything else I learn along the way, because learning is good, even if it&#8217;s not directly security-related.</p>
 		]]></description>
         <pubDate>Mon, 10 Aug 2015 00:00:00 -0700</pubDate>
-        <link>http://security.jeremy.tavan.com//2015/08/10/Here%20we%20go.html</link>
-        <guid isPermaLink="true">http://security.jeremy.tavan.com//2015/08/10/Here%20we%20go.html</guid>
+        <link>http://blog.jeremy.tavan.com//2015/08/10/Here%20we%20go.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/10/Here%20we%20go.html</guid>
       </item>
     
   </channel>

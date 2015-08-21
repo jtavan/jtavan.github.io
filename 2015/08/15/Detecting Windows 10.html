@@ -23,17 +23,15 @@
 
 <p>Nothing Earth-shattering about this one, but it was a simple solution to the problem. In BigFix Relevance, we can use the following (though it will be unnecessary once we’re running the version that has native detection for Windows 10):</p>
 
-<pre>
-(exists (if (x64 of operating system) then 
-            unique values of (it as string as trimmed string) 
-                of values "ProductName" 
-                    of keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion" 
-                        of (x32 registries;x64 registries) 
-        else unique values of (it as string as trimmed string) 
-            of values "ProductName" of keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion" 
-                of registry) 
- whose (it starts with "Windows 10"))
-</pre>
+<div class="highlight"><pre><code class="language-scheme" data-lang="scheme"><span class="lineno">1</span> <span class="p">(</span><span class="nf">exists</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">x64</span> <span class="nv">of</span> <span class="nv">operating</span> <span class="nv">system</span><span class="p">)</span> <span class="nv">then</span> 
+<span class="lineno">2</span>             <span class="nv">unique</span> <span class="nv">values</span> <span class="nv">of</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">as</span> <span class="nv">string</span> <span class="nv">as</span> <span class="nv">trimmed</span> <span class="nv">string</span><span class="p">)</span> 
+<span class="lineno">3</span>                 <span class="nv">of</span> <span class="nv">values</span> <span class="s">&quot;ProductName&quot;</span> 
+<span class="lineno">4</span>                     <span class="nv">of</span> <span class="nv">keys</span> <span class="s">&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot;</span> 
+<span class="lineno">5</span>                         <span class="nv">of</span> <span class="p">(</span><span class="nf">x32</span> <span class="nv">registries</span><span class="c1">;x64 registries) </span>
+<span class="lineno">6</span>         <span class="k">else </span><span class="nv">unique</span> <span class="nv">values</span> <span class="nv">of</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">as</span> <span class="nv">string</span> <span class="nv">as</span> <span class="nv">trimmed</span> <span class="nv">string</span><span class="p">)</span> 
+<span class="lineno">7</span>             <span class="nv">of</span> <span class="nv">values</span> <span class="s">&quot;ProductName&quot;</span> <span class="nv">of</span> <span class="nv">keys</span> <span class="s">&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot;</span> 
+<span class="lineno">8</span>                 <span class="nv">of</span> <span class="nv">registry</span><span class="p">)</span> 
+<span class="lineno">9</span>  <span class="nv">whose</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">starts</span> <span class="nv">with</span> <span class="s">&quot;Windows 10&quot;</span><span class="p">))</span></code></pre></div>
 
 	</article>
 	<p>This article is tagged: <span class="taglist">
