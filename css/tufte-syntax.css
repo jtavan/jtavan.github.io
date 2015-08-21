@@ -1,8 +1,52 @@
-.highlight {
-	margin-left: -10px;
-	padding-left: 10px;
-	box-shadow: -1px 0 0 #111;
+.highlight > pre {
+    counter-reset: line-numbering;
+    padding: 0;
+/*    line-height: 23px; */
+    margin-bottom: 30px;
+    white-space: pre;
+    overflow-x: auto;
+    word-break: inherit;
+    word-wrap: inherit;
+    margin-left: -4em;
 }
+
+.highlight > pre a {
+	border: none;
+}
+
+.highlight > pre a::before {
+  content: counter(line-numbering);
+  counter-increment: line-numbering;
+  padding-right: 1em; /* space after numbers */
+  width: 25px;
+  text-align: right;
+/*  opacity: 0.7; */
+  display: inline-block;
+/*  color: #aaa;
+  background: #eee; */
+  margin-right: 16px;
+  padding: 2px 10px;
+/*  font-size: 13px; */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.highlight > pre a:first-of-type::before {
+  padding-top: 10px;
+}
+
+.highlight > pre a:last-of-type::before {
+  padding-bottom: 10px;
+}
+
+.highlight > pre a:only-of-type::before {
+  padding: 10px;
+}
+
 
 .hll { background-color: #fffff8 }
 .c { color: #408080; font-style: italic } /* Comment */

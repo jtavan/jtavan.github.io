@@ -24,30 +24,30 @@
 
 			<p>In <a href="/2015/08/16/Things%20I%20need%20to%20Create.html">Things I Need To Create For This Blog</a> I mentioned that I needed an easier way to create sidenotes than pasting in a bunch of ugly HTML in my Markdown. So, following the super simple template on the Jekyll page and not knowing any Ruby, I created a Sidenote liquid tag.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="lineno"> 1</span> <span class="nb">require</span> <span class="s1">&#39;securerandom&#39;</span>
-<span class="lineno"> 2</span> 
-<span class="lineno"> 3</span> <span class="k">module</span> <span class="nn">Jekyll</span>
-<span class="lineno"> 4</span>   <span class="k">class</span> <span class="nc">SidenoteTag</span> <span class="o">&lt;</span> <span class="no">Liquid</span><span class="o">::</span><span class="no">Tag</span>
-<span class="lineno"> 5</span> 
-<span class="lineno"> 6</span>     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">tokens</span><span class="p">)</span>
-<span class="lineno"> 7</span>       <span class="k">super</span>
-<span class="lineno"> 8</span>       <span class="vi">@text</span> <span class="o">=</span> <span class="n">text</span>
-<span class="lineno"> 9</span>     <span class="k">end</span>
-<span class="lineno">10</span> 
-<span class="lineno">11</span>     <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
-<span class="lineno">12</span> 	  <span class="nb">id</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">random_number</span><span class="p">(</span><span class="mi">36</span><span class="o">**</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
-<span class="lineno">13</span>       <span class="s2">&quot;&lt;label for=</span><span class="se">\&quot;</span><span class="s2">sn-</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> class=</span><span class="se">\&quot;</span><span class="s2">margin-toggle sidenote-number</span><span class="se">\&quot;</span><span class="s2">&gt;&lt;/label&gt;</span>
-<span class="lineno">14</span> <span class="s2">&lt;input type=</span><span class="se">\&quot;</span><span class="s2">checkbox</span><span class="se">\&quot;</span><span class="s2"> id=</span><span class="se">\&quot;</span><span class="s2">sn-</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> class=</span><span class="se">\&quot;</span><span class="s2">margin-toggle</span><span class="se">\&quot;</span><span class="s2">/&gt;&lt;span class=</span><span class="se">\&quot;</span><span class="s2">sidenote</span><span class="se">\&quot;</span><span class="s2">&gt;</span><span class="si">#{</span><span class="vi">@text</span><span class="si">}</span><span class="s2">&lt;/span&gt;&quot;</span>
-<span class="lineno">15</span>     <span class="k">end</span>
-<span class="lineno">16</span>   <span class="k">end</span>
-<span class="lineno">17</span> <span class="k">end</span>
-<span class="lineno">18</span> 
-<span class="lineno">19</span> <span class="no">Liquid</span><span class="o">::</span><span class="no">Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;sidenote&#39;</span><span class="p">,</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">SidenoteTag</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><a name="True-1"></a><span class="nb">require</span> <span class="s1">&#39;securerandom&#39;</span>
+<a name="True-2"></a>
+<a name="True-3"></a><span class="k">module</span> <span class="nn">Jekyll</span>
+<a name="True-4"></a>  <span class="k">class</span> <span class="nc">SidenoteTag</span> <span class="o">&lt;</span> <span class="no">Liquid</span><span class="o">::</span><span class="no">Tag</span>
+<a name="True-5"></a>
+<a name="True-6"></a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">tokens</span><span class="p">)</span>
+<a name="True-7"></a>      <span class="k">super</span>
+<a name="True-8"></a>      <span class="vi">@text</span> <span class="o">=</span> <span class="n">text</span>
+<a name="True-9"></a>    <span class="k">end</span>
+<a name="True-10"></a>
+<a name="True-11"></a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+<a name="True-12"></a>	  <span class="nb">id</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">random_number</span><span class="p">(</span><span class="mi">36</span><span class="o">**</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+<a name="True-13"></a>      <span class="s2">&quot;&lt;label for=</span><span class="se">\&quot;</span><span class="s2">sn-</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> class=</span><span class="se">\&quot;</span><span class="s2">margin-toggle sidenote-number</span><span class="se">\&quot;</span><span class="s2">&gt;&lt;/label&gt;</span>
+<a name="True-14"></a><span class="s2">&lt;input type=</span><span class="se">\&quot;</span><span class="s2">checkbox</span><span class="se">\&quot;</span><span class="s2"> id=</span><span class="se">\&quot;</span><span class="s2">sn-</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> class=</span><span class="se">\&quot;</span><span class="s2">margin-toggle</span><span class="se">\&quot;</span><span class="s2">/&gt;&lt;span class=</span><span class="se">\&quot;</span><span class="s2">sidenote</span><span class="se">\&quot;</span><span class="s2">&gt;</span><span class="si">#{</span><span class="vi">@text</span><span class="si">}</span><span class="s2">&lt;/span&gt;&quot;</span>
+<a name="True-15"></a>    <span class="k">end</span>
+<a name="True-16"></a>  <span class="k">end</span>
+<a name="True-17"></a><span class="k">end</span>
+<a name="True-18"></a>
+<a name="True-19"></a><span class="no">Liquid</span><span class="o">::</span><span class="no">Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;sidenote&#39;</span><span class="p">,</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">SidenoteTag</span><span class="p">)</span></code></pre></div>
 
 <p>Now all I need to do to create a sidenote is to put in a liquid tag:</p>
 <pre>{.% sidenote And sidenote text goes here %}</pre>
-<p>and it gets converted into a proper sidenote.<label for="sn-etzsjlpdvzo8" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-etzsjlpdvzo8" class="margin-toggle" /><span class="sidenote">Just like this. </span></p>
+<p>and it gets converted into a proper sidenote.<label for="sn-hwp9n3vip22y" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-hwp9n3vip22y" class="margin-toggle" /><span class="sidenote">Just like this. </span></p>
 
 				</p>
 			</section>
@@ -60,8 +60,8 @@
 
 			<p>I’m having a good time figuring out how to build a static page blog using <a href="http://jekyllrb.com/">Jekyll</a>, but there are a few pieces missing for it to really do what I need.</p>
 
-<p>First, I’m trying to use <a href="http://www.daveliepmann.com/tufte-css/">Tufte.css</a> for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.<label for="sn-nyyjbpnh6xpc" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-nyyjbpnh6xpc" class="margin-toggle" /><span class="sidenote">That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. </span> <strong>Update</strong>: Done. That was easy. See this post for details how.</p>
+<p>First, I’m trying to use <a href="http://www.daveliepmann.com/tufte-css/">Tufte.css</a> for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.<label for="sn-om27xb6gwxfo" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-om27xb6gwxfo" class="margin-toggle" /><span class="sidenote">That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. </span> <strong>Update</strong>: Done. That was easy. See this post for details how.</p>
 
 <p>So it looks like I’m going to need to build a custom filter to allow me to use simple directives and have them convert into appropriate sidenote and marginnote HTML.</p>
 
@@ -85,15 +85,15 @@
 
 <p>Nothing Earth-shattering about this one, but it was a simple solution to the problem. In BigFix Relevance, we can use the following (though it will be unnecessary once we’re running the version that has native detection for Windows 10):</p>
 
-<div class="highlight"><pre><code class="language-scheme" data-lang="scheme"><span class="lineno">1</span> <span class="p">(</span><span class="nf">exists</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">x64</span> <span class="nv">of</span> <span class="nv">operating</span> <span class="nv">system</span><span class="p">)</span> <span class="nv">then</span> 
-<span class="lineno">2</span>             <span class="nv">unique</span> <span class="nv">values</span> <span class="nv">of</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">as</span> <span class="nv">string</span> <span class="nv">as</span> <span class="nv">trimmed</span> <span class="nv">string</span><span class="p">)</span> 
-<span class="lineno">3</span>                 <span class="nv">of</span> <span class="nv">values</span> <span class="s">&quot;ProductName&quot;</span> 
-<span class="lineno">4</span>                     <span class="nv">of</span> <span class="nv">keys</span> <span class="s">&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot;</span> 
-<span class="lineno">5</span>                         <span class="nv">of</span> <span class="p">(</span><span class="nf">x32</span> <span class="nv">registries</span><span class="c1">;x64 registries) </span>
-<span class="lineno">6</span>         <span class="k">else </span><span class="nv">unique</span> <span class="nv">values</span> <span class="nv">of</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">as</span> <span class="nv">string</span> <span class="nv">as</span> <span class="nv">trimmed</span> <span class="nv">string</span><span class="p">)</span> 
-<span class="lineno">7</span>             <span class="nv">of</span> <span class="nv">values</span> <span class="s">&quot;ProductName&quot;</span> <span class="nv">of</span> <span class="nv">keys</span> <span class="s">&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot;</span> 
-<span class="lineno">8</span>                 <span class="nv">of</span> <span class="nv">registry</span><span class="p">)</span> 
-<span class="lineno">9</span>  <span class="nv">whose</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">starts</span> <span class="nv">with</span> <span class="s">&quot;Windows 10&quot;</span><span class="p">))</span></code></pre></div>
+<div class="highlight"><pre><code class="language-scheme" data-lang="scheme"><a name="True-1"></a><span class="p">(</span><span class="nf">exists</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">x64</span> <span class="nv">of</span> <span class="nv">operating</span> <span class="nv">system</span><span class="p">)</span> <span class="nv">then</span> 
+<a name="True-2"></a>            <span class="nv">unique</span> <span class="nv">values</span> <span class="nv">of</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">as</span> <span class="nv">string</span> <span class="nv">as</span> <span class="nv">trimmed</span> <span class="nv">string</span><span class="p">)</span> 
+<a name="True-3"></a>                <span class="nv">of</span> <span class="nv">values</span> <span class="s">&quot;ProductName&quot;</span> 
+<a name="True-4"></a>                    <span class="nv">of</span> <span class="nv">keys</span> <span class="s">&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot;</span> 
+<a name="True-5"></a>                        <span class="nv">of</span> <span class="p">(</span><span class="nf">x32</span> <span class="nv">registries</span><span class="c1">;x64 registries) </span>
+<a name="True-6"></a>        <span class="k">else </span><span class="nv">unique</span> <span class="nv">values</span> <span class="nv">of</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">as</span> <span class="nv">string</span> <span class="nv">as</span> <span class="nv">trimmed</span> <span class="nv">string</span><span class="p">)</span> 
+<a name="True-7"></a>            <span class="nv">of</span> <span class="nv">values</span> <span class="s">&quot;ProductName&quot;</span> <span class="nv">of</span> <span class="nv">keys</span> <span class="s">&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot;</span> 
+<a name="True-8"></a>                <span class="nv">of</span> <span class="nv">registry</span><span class="p">)</span> 
+<a name="True-9"></a> <span class="nv">whose</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">starts</span> <span class="nv">with</span> <span class="s">&quot;Windows 10&quot;</span><span class="p">))</span></code></pre></div>
 
 				</p>
 			</section>
