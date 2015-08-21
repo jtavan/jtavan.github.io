@@ -39,8 +39,8 @@
 
 <p>Now all I need to do to create a sidenote is to put in a liquid tag:</p>
 <pre>{.% sidenote And sidenote text goes here %}</pre>
-<p>and it gets converted into a proper sidenote.<label for="sn-4ibouuardpae" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-4ibouuardpae" class="margin-toggle" /><span class="sidenote">Just like this. </span></p>
+<p>and it gets converted into a proper sidenote.<label for="sn-etzsjlpdvzo8" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-etzsjlpdvzo8" class="margin-toggle" /><span class="sidenote">Just like this. </span></p>
 
 		]]></description>
         <pubDate>Thu, 20 Aug 2015 00:00:00 -0700</pubDate>
@@ -54,8 +54,8 @@
         <description><![CDATA[
 		   <p>I’m having a good time figuring out how to build a static page blog using <a href="http://jekyllrb.com/">Jekyll</a>, but there are a few pieces missing for it to really do what I need.</p>
 
-<p>First, I’m trying to use <a href="http://www.daveliepmann.com/tufte-css/">Tufte.css</a> for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.<label for="sn-knnfo598h3rp" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-knnfo598h3rp" class="margin-toggle" /><span class="sidenote">That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. </span> <strong>Update</strong>: Done. That was easy. See this post for details how.</p>
+<p>First, I’m trying to use <a href="http://www.daveliepmann.com/tufte-css/">Tufte.css</a> for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.<label for="sn-nyyjbpnh6xpc" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-nyyjbpnh6xpc" class="margin-toggle" /><span class="sidenote">That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. </span> <strong>Update</strong>: Done. That was easy. See this post for details how.</p>
 
 <p>So it looks like I’m going to need to build a custom filter to allow me to use simple directives and have them convert into appropriate sidenote and marginnote HTML.</p>
 

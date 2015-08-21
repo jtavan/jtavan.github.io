@@ -38,8 +38,8 @@
 
 &lt;p&gt;Now all I need to do to create a sidenote is to put in a liquid tag:&lt;/p&gt;
 &lt;pre&gt;{.% sidenote And sidenote text goes here %}&lt;/pre&gt;
-&lt;p&gt;and it gets converted into a proper sidenote.&lt;label for=&quot;sn-4ibouuardpae&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
-&lt;input type=&quot;checkbox&quot; id=&quot;sn-4ibouuardpae&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;Just like this. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;and it gets converted into a proper sidenote.&lt;label for=&quot;sn-etzsjlpdvzo8&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;sn-etzsjlpdvzo8&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;Just like this. &lt;/span&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 20 Aug 2015 00:00:00 -0700</pubDate>
         <link>http://blog.jeremy.tavan.com//2015/08/20/Custom%20Jekyll%20liquid%20tag.html</link>
@@ -51,8 +51,8 @@
         <author>Jeremy Tavan</author>
         <description>&lt;p&gt;I’m having a good time figuring out how to build a static page blog using &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;, but there are a few pieces missing for it to really do what I need.&lt;/p&gt;
 
-&lt;p&gt;First, I’m trying to use &lt;a href=&quot;http://www.daveliepmann.com/tufte-css/&quot;&gt;Tufte.css&lt;/a&gt; for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.&lt;label for=&quot;sn-knnfo598h3rp&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
-&lt;input type=&quot;checkbox&quot; id=&quot;sn-knnfo598h3rp&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. &lt;/span&gt; &lt;strong&gt;Update&lt;/strong&gt;: Done. That was easy. See this post for details how.&lt;/p&gt;
+&lt;p&gt;First, I’m trying to use &lt;a href=&quot;http://www.daveliepmann.com/tufte-css/&quot;&gt;Tufte.css&lt;/a&gt; for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.&lt;label for=&quot;sn-nyyjbpnh6xpc&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;sn-nyyjbpnh6xpc&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. &lt;/span&gt; &lt;strong&gt;Update&lt;/strong&gt;: Done. That was easy. See this post for details how.&lt;/p&gt;
 
 &lt;p&gt;So it looks like I’m going to need to build a custom filter to allow me to use simple directives and have them convert into appropriate sidenote and marginnote HTML.&lt;/p&gt;
 
