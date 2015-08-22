@@ -14,3 +14,28 @@ p.subtitle > a { border-bottom: none;}
 .highlighted {
 	color: #f00000;
 }
+
+
+p.subtitle {
+	font-size: 1.3rem;
+}
+
+.tags {
+	font-style: italic;
+	padding-top: 1.5rem;
+}
+
+.tags a {
+	margin-right: 0.3rem;
+}
+
+h1 { 
+	font-size: 2rem;
+	margin-top: 1rem;
+	margin-bottom: 0.7rem;
+}
+
+p.subtitle {
+	margin-top: 0.2rem;
+	margin-bottom: 0.3rem;
+}
