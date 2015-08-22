@@ -6,9 +6,7 @@
 		<link href="/css/tufte.css" rel="stylesheet"  />
 		<link href="/css/tufte-custom.css" rel="stylesheet" />
 		<link href="/css/tufte-syntax.css" rel="stylesheet" />
-		<style type="text/css">
-span.codedirection { unicode-bidi:bidi-override; direction: rtl; }
-</style>
+		<link href="http://blog.jeremy.tavan.com/feed.xml" rel="alternate" type="application/rss+xml" title="Clutching at Security Blankets" />
 	</head>	
 
 <body>
@@ -23,8 +21,8 @@ span.codedirection { unicode-bidi:bidi-override; direction: rtl; }
 		</section>
 		<p>I’m having a good time figuring out how to build a static page blog using <a href="http://jekyllrb.com/">Jekyll</a>, but there are a few pieces missing for it to really do what I need.</p>
 
-<p>First, I’m trying to use <a href="http://www.daveliepmann.com/tufte-css/">Tufte.css</a> for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.<label for="sn-wrk5q7yl0uuz" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-wrk5q7yl0uuz" class="margin-toggle" /><span class="sidenote">That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. </span></p>
+<p>First, I’m trying to use <a href="http://www.daveliepmann.com/tufte-css/">Tufte.css</a> for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.<label for="sn-2z87tvzhq5wj" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-2z87tvzhq5wj" class="margin-toggle" /><span class="sidenote">That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. </span></p>
 
 <p>So it looks like I’m going to need to build a custom filter to allow me to use simple directives and have them convert into appropriate sidenote and marginnote HTML. <strong>Update</strong>: Done. See <a href="/2015/08/20/Custom%20Jekyll%20liquid%20tag.html">this post</a> for details.</p>
 
