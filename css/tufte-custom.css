@@ -44,3 +44,7 @@ p.subtitle {
 span.codedirection { 
 	unicode-bidi:bidi-override; direction: rtl; 
 }
+
+code { font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        font-size: 1rem;
+        line-height: 1; }

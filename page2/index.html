@@ -16,7 +16,31 @@
 		<hr/>
 		
 			<section>
-			<p><label for="mn-1fg4ri3yd7ts" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-1fg4ri3yd7ts" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/blog">blog</a>&nbsp;</span></p>
+			<p><label for="mn-dob8xy8q0qm1" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-dob8xy8q0qm1" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/bigfix">bigfix</a>&nbsp;<a href="/tag/code">code</a>&nbsp;<a href="/tag/windows">windows</a>&nbsp;</span></p>
+			<h2><a href="/2015/08/15/Detecting%20Windows%2010.html">Detecting Windows 10</a></h2> <br/>
+			15 August 2015
+			
+			<p>Let’s say you’ve got an endpoint management solution in place that doesn’t yet understand Windows 10 and instead reports it as various flavors of Windows 8 or 8.1. How do you detect what flavor of Windows really is running on the system?</p>
+
+<pre><code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProductName
+</code></pre>
+
+<p>Nothing Earth-shattering about this one, but it was a simple solution to the problem. In BigFix Relevance, we can use the following (though it will be unnecessary once we’re running the version that has native detection for Windows 10):</p>
+
+<div class="highlight"><pre><code class="language-scheme" data-lang="scheme"><a name="True-1"></a><span class="p">(</span><span class="nf">exists</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">x64</span> <span class="nv">of</span> <span class="nv">operating</span> <span class="nv">system</span><span class="p">)</span> <span class="nv">then</span> 
+<a name="True-2"></a>            <span class="nv">unique</span> <span class="nv">values</span> <span class="nv">of</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">as</span> <span class="nv">string</span> <span class="nv">as</span> <span class="nv">trimmed</span> <span class="nv">string</span><span class="p">)</span> 
+<a name="True-3"></a>                <span class="nv">of</span> <span class="nv">values</span> <span class="s">&quot;ProductName&quot;</span> 
+<a name="True-4"></a>                    <span class="nv">of</span> <span class="nv">keys</span> <span class="s">&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot;</span> 
+<a name="True-5"></a>                        <span class="nv">of</span> <span class="p">(</span><span class="nf">x32</span> <span class="nv">registries</span><span class="c1">;x64 registries) </span>
+<a name="True-6"></a>        <span class="k">else </span><span class="nv">unique</span> <span class="nv">values</span> <span class="nv">of</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">as</span> <span class="nv">string</span> <span class="nv">as</span> <span class="nv">trimmed</span> <span class="nv">string</span><span class="p">)</span> 
+<a name="True-7"></a>            <span class="nv">of</span> <span class="nv">values</span> <span class="s">&quot;ProductName&quot;</span> <span class="nv">of</span> <span class="nv">keys</span> <span class="s">&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot;</span> 
+<a name="True-8"></a>                <span class="nv">of</span> <span class="nv">registry</span><span class="p">)</span> 
+<a name="True-9"></a> <span class="nv">whose</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">starts</span> <span class="nv">with</span> <span class="s">&quot;Windows 10&quot;</span><span class="p">))</span></code></pre></div>
+
+			</section>
+		
+			<section>
+			<p><label for="mn-m8zgwef87u13" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-m8zgwef87u13" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/blog">blog</a>&nbsp;</span></p>
 			<h2><a href="/2015/08/10/Here%20we%20go.html">Here we go!</a></h2> <br/>
 			10 August 2015
 			
