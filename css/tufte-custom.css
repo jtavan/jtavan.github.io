@@ -39,3 +39,8 @@ p.subtitle {
 	margin-top: 0.2rem;
 	margin-bottom: 0.3rem;
 }
+
+
+span.codedirection { 
+	unicode-bidi:bidi-override; direction: rtl; 
+}
