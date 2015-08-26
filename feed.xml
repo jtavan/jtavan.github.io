@@ -22,29 +22,6 @@
       </item>
     
       <item>
-        <title>Observations on SysAdmins</title>
-        <author>Jeremy Tavan</author>
-        <description>&lt;p&gt;In my old life in desktop support I had the pleasure to work fairly closely with a group of system administrators in a team related to mine. These folks were technically astute, communicative, open-minded, and forward-thinking. I have also encountered other administrators (from other groups, in prior jobs) who were none of the above. In my new role in Security Operations I share responsibility for a good number of servers used by our assorted services, so I’m trying to figure out what makes a great administrator. They all do approximately the same job, in relatively similar conditions and environments, so why such a range of competency levels? It seems to me that there’s a number of perspectives on system administration represented by the different people I’ve observed. A few notes on each:&lt;/p&gt;
-
-&lt;h3 id=&quot;system-administration-as-a-thing-you-do-when-you-have-to&quot;&gt;System Administration as a thing you do when you have to&lt;/h3&gt;
-&lt;p&gt;Many people fall in to this cartegory, particularly when their primary role is not that of a system administrator. It’s somewhat understandable that someone brought on board as a life sciences research assistant or a financial analyst&lt;label for=&quot;sn-ewnmugb9uygh&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
-&lt;input type=&quot;checkbox&quot; id=&quot;sn-ewnmugb9uygh&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;To pick a couple roles completely at random. &lt;/span&gt; might chafe at also having to take care of the cantankerous file server under the desk in the corner, and might only touch a server when it’s broken and someone’s complaining.&lt;/p&gt;
-
-&lt;p&gt;It’s less understandable when someone is nominally being paid to maintain servers and systems. There are people, however, who seem to see this kind of job as a cushy sinecure where they can sit around until someone complains, then blame the victim and prod a few things until the server starts working again. They’re also quick to resent anyone from the outside looking in at their practices. These people are highly unlikely to follow any sort of best practices or to implement any automation or security auditing. After all, they’re not doing a lot of work on the server, so why automate anything? Fortunately, it’s a lot harder to get away with this sort of attitude when working on a team, so it seems to be limited mostly to small-IT, individual administrators, responsible for just a small number of servers at a time.&lt;/p&gt;
-
-&lt;h3 id=&quot;system-administration-as-a-series-of-rigidly-defined-tasks&quot;&gt;System Administration as a series of rigidly defined tasks&lt;/h3&gt;
-&lt;p&gt;This perspective seems to manifest in admins who currently work or at some formative point in their past worked in an extremely rigid organization where venturing outside the strict set of protocols and job specifications was not encouraged or even tolerated.&lt;/p&gt;
-
-&lt;h3 id=&quot;system-administration-as-a-process-by-which-services-are-delivered&quot;&gt;System Administration as a process by which services are delivered&lt;/h3&gt;
-
-&lt;h3 id=&quot;system-administration-as-an-avenue-for-excellence&quot;&gt;System Administration as an avenue for excellence.&lt;/h3&gt;
-</description>
-        <pubDate>Sun, 23 Aug 2015 21:38:56 -0700</pubDate>
-        <link>http://blog.jeremy.tavan.com//2015/08/23/2015-08-22-Observations%20on%20SysAdmins.html</link>
-        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/23/2015-08-22-Observations%20on%20SysAdmins.html</guid>
-      </item>
-    
-      <item>
         <title>Creating a custom liquid tag for Jekyll</title>
         <author>Jeremy Tavan</author>
         <description>&lt;p&gt;In &lt;a href=&quot;/2015/08/16/Things%20I%20need%20to%20Create.html&quot;&gt;Things I Need To Create For This Blog&lt;/a&gt; I mentioned that I needed an easier way to create sidenotes than pasting in a bunch of ugly HTML in my Markdown. So, following the super simple template on the Jekyll page and not knowing any Ruby, I created a Sidenote liquid tag.&lt;/p&gt;
@@ -71,8 +48,8 @@
 
 &lt;p&gt;Now all I need to do to create a sidenote is to put in a liquid tag:&lt;/p&gt;
 &lt;pre&gt;{.% sidenote And sidenote text goes here %}&lt;/pre&gt;
-&lt;p&gt;and it gets converted into a proper sidenote.&lt;label for=&quot;sn-9taknrcpx212&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
-&lt;input type=&quot;checkbox&quot; id=&quot;sn-9taknrcpx212&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;Just like this. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;and it gets converted into a proper sidenote.&lt;label for=&quot;sn-vizntf58q8sx&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;sn-vizntf58q8sx&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;Just like this. &lt;/span&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 20 Aug 2015 00:00:00 -0700</pubDate>
         <link>http://blog.jeremy.tavan.com//2015/08/20/Custom%20Jekyll%20liquid%20tag.html</link>
@@ -84,8 +61,8 @@
         <author>Jeremy Tavan</author>
         <description>&lt;p&gt;I’m having a good time figuring out how to build a static page blog using &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;, but there are a few pieces missing for it to really do what I need.&lt;/p&gt;
 
-&lt;p&gt;First, I’m trying to use &lt;a href=&quot;http://www.daveliepmann.com/tufte-css/&quot;&gt;Tufte.css&lt;/a&gt; for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.&lt;label for=&quot;sn-i0j370rlmpga&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
-&lt;input type=&quot;checkbox&quot; id=&quot;sn-i0j370rlmpga&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;First, I’m trying to use &lt;a href=&quot;http://www.daveliepmann.com/tufte-css/&quot;&gt;Tufte.css&lt;/a&gt; for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.&lt;label for=&quot;sn-jpbqvhpycjwl&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;sn-jpbqvhpycjwl&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. &lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;So it looks like I’m going to need to build a custom filter to allow me to use simple directives and have them convert into appropriate sidenote and marginnote HTML. &lt;strong&gt;Update&lt;/strong&gt;: Done. See &lt;a href=&quot;/2015/08/20/Custom%20Jekyll%20liquid%20tag.html&quot;&gt;this post&lt;/a&gt; for details.&lt;/p&gt;
 
