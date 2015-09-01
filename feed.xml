@@ -14,8 +14,8 @@
       <item>
         <title>Identifying PCI devices in Powershell</title>
         <author>Jeremy Tavan</author>
-        <description>&lt;p&gt;I had a need recently to identify the device that failed on a Dell server. The server reported the failure in terms of PCI Bus, Device, and Function. Unfortunately, unlike Linux with its &lt;code&gt;lspci(8)&lt;/code&gt;, Windows doesn’t expose those very easily. The Dell technician suggested installing and running their diagnostic gathering tool on the server, but given protections in place on the server it would have taken some time to do so.&lt;label for=&quot;sn-k45wmptfkkp9&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
-&lt;input type=&quot;checkbox&quot; id=&quot;sn-k45wmptfkkp9&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;It should be noted that finding the code to obtain this information took at least as long as whitelisting the tool and running it would have, but was much more educational. &lt;/span&gt; A little searching on the Internet and a little assembly of code resulted in the following:&lt;/p&gt;
+        <description>&lt;p&gt;I had a need recently to identify the device that failed on a Dell server. The server reported the failure in terms of PCI Bus, Device, and Function. Unfortunately, unlike Linux with its &lt;code&gt;lspci(8)&lt;/code&gt;, Windows doesn’t expose those very easily. The Dell technician suggested installing and running their diagnostic gathering tool on the server, but given protections in place on the server it would have taken some time to do so.&lt;label for=&quot;sn-991n9uzwk96k&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;sn-991n9uzwk96k&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;It should be noted that finding the code to obtain this information took at least as long as whitelisting the tool and running it would have, but was much more educational. &lt;/span&gt; A little searching on the Internet and a little assembly of code resulted in the following:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;a name=&quot;True-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Resolve-PCIBusInfo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 &lt;a name=&quot;True-2&quot;&gt;&lt;/a&gt;&lt;span class=&quot;k&quot;&gt;param&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
@@ -91,8 +91,8 @@
 
 &lt;p&gt;Now all I need to do to create a sidenote is to put in a liquid tag:&lt;/p&gt;
 &lt;pre&gt;{.% sidenote And sidenote text goes here %}&lt;/pre&gt;
-&lt;p&gt;and it gets converted into a proper sidenote.&lt;label for=&quot;sn-gqj6thjjly82&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
-&lt;input type=&quot;checkbox&quot; id=&quot;sn-gqj6thjjly82&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;Just like this. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;and it gets converted into a proper sidenote.&lt;label for=&quot;sn-e96esllizert&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;sn-e96esllizert&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;Just like this. &lt;/span&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 20 Aug 2015 00:00:00 -0700</pubDate>
         <link>http://blog.jeremy.tavan.com//2015/08/20/Custom%20Jekyll%20liquid%20tag.html</link>
@@ -104,8 +104,8 @@
         <author>Jeremy Tavan</author>
         <description>&lt;p&gt;I’m having a good time figuring out how to build a static page blog using &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;, but there are a few pieces missing for it to really do what I need.&lt;/p&gt;
 
-&lt;p&gt;First, I’m trying to use &lt;a href=&quot;http://www.daveliepmann.com/tufte-css/&quot;&gt;Tufte.css&lt;/a&gt; for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.&lt;label for=&quot;sn-rxlt0lqcmu3v&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
-&lt;input type=&quot;checkbox&quot; id=&quot;sn-rxlt0lqcmu3v&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;First, I’m trying to use &lt;a href=&quot;http://www.daveliepmann.com/tufte-css/&quot;&gt;Tufte.css&lt;/a&gt; for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.&lt;label for=&quot;sn-j0mrct3f7wkl&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;sn-j0mrct3f7wkl&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. &lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;So it looks like I’m going to need to build a custom filter to allow me to use simple directives and have them convert into appropriate sidenote and marginnote HTML. &lt;strong&gt;Update&lt;/strong&gt;: Done. See &lt;a href=&quot;/2015/08/20/Custom%20Jekyll%20liquid%20tag.html&quot;&gt;this post&lt;/a&gt; for details.&lt;/p&gt;
 
