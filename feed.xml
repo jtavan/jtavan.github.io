@@ -12,26 +12,49 @@
     <atom:link href="http://blog.jeremy.tavan.com/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>SANS SEC501 Reflections</title>
+        <author>Jeremy Tavan</author>
+        <description>&lt;p&gt;I just returned from &lt;a href=&quot;http://sans.org/&quot;&gt;SANS&lt;/a&gt; &lt;a href=&quot;http://sans.org/sec501/&quot;&gt;SEC501&lt;/a&gt;, my first formal Information Security training class in about fifteen years, held at their Network Security 2015 event in Las Vegas. This is a broad but “Advanced” overview class aimed at getting people a familiarity with as many topics as possible in the time available. I was pleased with the course with a few reservations, and I’m really glad I didn’t take one of the lower-level overview courses (&lt;a href=&quot;http://sans.org/sec301/&quot;&gt;SEC301&lt;/a&gt; or &lt;a href=&quot;http://sans.org/sec401&quot;&gt;SEC401&lt;/a&gt;) because this one was perfectly fine for someone at my level of background and experience. It could have been more challenging and technical and that would have been even better. A few notes on my experience:&lt;/p&gt;
+
+&lt;h3 id=&quot;a-week-is-a-very-long-time-to-study-a-subject-full-time&quot;&gt;A week is a very long time to study a subject full time.&lt;/h3&gt;
+&lt;p&gt;This isn’t just a complaint about being away from home and family for a week at a stretch. That’s manageable. The amount of time spent learning at these courses, however, is problematic. It wasn’t unusual for me to spend from 0830 to 2130 in the convention center, between the course itself and the evening lectures and tournament. After a week of this I was really ready for some natural light and fresh air. I know there’s a lot of material to cover, but it’s hard to keep sharp for that many hours at a time even with breaks.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-week-is-a-very-short-time-for-a-meaningful-class&quot;&gt;A week is a very short time for a meaningful class.&lt;/h3&gt;
+&lt;p&gt;There’s a huge amount of material to cover in an overview class, and a week just plain isn’t long enough to do it justice. So many topics were breezed through with just top-level bullet points. So many of the labs would have been more useful if we had to really dig in to them and do some analysis rather than just copying and pasting into a terminal. Our instructor definitely enriched the course with humorous and enlightening anecdotes and suggestions,&lt;label for=&quot;sn-3sbm1vsmcfv1&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;sn-3sbm1vsmcfv1&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;Of course, the discussions of virtualization and testing labs are going to result in some rather expensive purchases. C’est la vie. &lt;/span&gt; but had he just gone off the slides I would have felt cheated by the cursory treatment of the subject areas.&lt;/p&gt;
+
+&lt;h3 id=&quot;netwars-is-a-ton-of-fun&quot;&gt;NetWars is a ton of fun.&lt;/h3&gt;
+&lt;p&gt;In addition to SEC501, I also signed up for &lt;a href=&quot;https://www.sans.org/netwars/dfir-tournament&quot;&gt;NetWars DFIR&lt;/a&gt; because hey, why not, it’s free with the longform training course. This turned out to be the most entertaining and educational part of the entire trip. I hadn’t touched a computer forensics tool in my life before the day of the tournament, but due to convenient timing of the SEC501 topics, we did a quick overview of forensics tools the day the tournament started. Picture my surprise when I found myself on the leaderboard (10th place) after the first day. On the second day people jumped ahead super quickly,&lt;label for=&quot;sn-k7zxsi18d87u&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;sn-k7zxsi18d87u&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;I won’t accuse them of working on the questions during the day, but it was pretty suspicious &lt;/span&gt; but I still managed to come in 14th out of about 75 participants. I had no idea that digging information out of hard disk, memory, server logs, and network pcap data would be so much fun. This will be a career-influencing experience.&lt;/p&gt;
+
+&lt;p&gt;That’s it for my quick reflections. I may well have additional posts to write on the various topics discussed during the class. I would like to thank &lt;a href=&quot;https://twitter.com/phenrycissp&quot;&gt;Paul Henry&lt;/a&gt; for leading a fun and educational intro to InfoSec. I look forward to future, more specialized and detailed classes.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 20 Sep 2015 00:00:00 -0700</pubDate>
+        <link>http://blog.jeremy.tavan.com//2015/09/20/My_First_Infosec_Training.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/09/20/My_First_Infosec_Training.html</guid>
+      </item>
+    
+      <item>
         <title>Identifying PCI devices in Powershell</title>
         <author>Jeremy Tavan</author>
-        <description>&lt;p&gt;I had a need recently to identify the device that failed on a Dell server. The server reported the failure in terms of PCI Bus, Device, and Function. Unfortunately, unlike Linux with its &lt;code&gt;lspci(8)&lt;/code&gt;, Windows doesn’t expose those very easily. The Dell technician suggested installing and running their diagnostic gathering tool on the server, but given protections in place on the server it would have taken some time to do so.&lt;label for=&quot;sn-xrjzabfm47r6&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
-&lt;input type=&quot;checkbox&quot; id=&quot;sn-xrjzabfm47r6&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;It should be noted that finding the code to obtain this information took at least as long as whitelisting the tool and running it would have, but was much more educational. &lt;/span&gt; A little searching on the Internet and a little assembly of code resulted in the following:&lt;/p&gt;
+        <description>&lt;p&gt;I had a need recently to identify the device that failed on a Dell server. The server reported the failure in terms of PCI Bus, Device, and Function. Unfortunately, unlike Linux with its &lt;code&gt;lspci(8)&lt;/code&gt;, Windows doesn’t expose those very easily. The Dell technician suggested installing and running their diagnostic gathering tool on the server, but given protections in place on the server it would have taken some time to do so.&lt;label for=&quot;sn-k170t1ll0tnt&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;sn-k170t1ll0tnt&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;It should be noted that finding the code to obtain this information took at least as long as whitelisting the tool and running it would have, but was much more educational. &lt;/span&gt; A little searching on the Internet and a little assembly of code resulted in the following:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;a name=&quot;True-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Resolve-PCIBusInfo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;a name=&quot;True-2&quot;&gt;&lt;/a&gt;&lt;span class=&quot;k&quot;&gt;param&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-&lt;a name=&quot;True-3&quot;&gt;&lt;/a&gt;	&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;parameter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ValueFromPipeline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Mandatory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
-&lt;a name=&quot;True-4&quot;&gt;&lt;/a&gt;	&lt;span class=&quot;no&quot;&gt;[string]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$locationInfo&lt;/span&gt;
-&lt;a name=&quot;True-5&quot;&gt;&lt;/a&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;a name=&quot;True-6&quot;&gt;&lt;/a&gt;&lt;span class=&quot;k&quot;&gt;PROCESS&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;a name=&quot;True-7&quot;&gt;&lt;/a&gt;	&lt;span class=&quot;no&quot;&gt;[void]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$locationInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-match&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;\d+,\d+,\d+&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;a name=&quot;True-8&quot;&gt;&lt;/a&gt;	&lt;span class=&quot;nv&quot;&gt;$busId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$deviceID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$functionID&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$matches&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-split&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;,&amp;quot;&lt;/span&gt;
-&lt;a name=&quot;True-9&quot;&gt;&lt;/a&gt;
-&lt;a name=&quot;True-10&quot;&gt;&lt;/a&gt;	&lt;span class=&quot;nb&quot;&gt;New-Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;psobject&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-property&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;@{&lt;/span&gt;
-&lt;a name=&quot;True-11&quot;&gt;&lt;/a&gt;    	&lt;span class=&quot;s2&quot;&gt;&amp;quot;BusID&amp;quot;&lt;/span&gt; 		&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$busId&lt;/span&gt;
-&lt;a name=&quot;True-12&quot;&gt;&lt;/a&gt;		&lt;span class=&quot;s2&quot;&gt;&amp;quot;DeviceID&amp;quot;&lt;/span&gt;	&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$deviceID&lt;/span&gt;
-&lt;a name=&quot;True-13&quot;&gt;&lt;/a&gt;		&lt;span class=&quot;s2&quot;&gt;&amp;quot;FunctionID&amp;quot;&lt;/span&gt; 	&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$functionID&lt;/span&gt;
-&lt;a name=&quot;True-14&quot;&gt;&lt;/a&gt;	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;a name=&quot;True-15&quot;&gt;&lt;/a&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;a name=&quot;True-2&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;k&quot;&gt;param&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+&lt;a name=&quot;True-3&quot;&gt;&lt;/a&gt;        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;parameter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ValueFromPipeline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Mandatory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
+&lt;a name=&quot;True-4&quot;&gt;&lt;/a&gt;        &lt;span class=&quot;no&quot;&gt;[string]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$locationInfo&lt;/span&gt;
+&lt;a name=&quot;True-5&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;a name=&quot;True-6&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;k&quot;&gt;PROCESS&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;a name=&quot;True-7&quot;&gt;&lt;/a&gt;		&lt;span class=&quot;no&quot;&gt;[void]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$locationInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-match&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;\d+,\d+,\d+&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;a name=&quot;True-8&quot;&gt;&lt;/a&gt;		&lt;span class=&quot;nv&quot;&gt;$busId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$deviceID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$functionID&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$matches&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-split&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;,&amp;quot;&lt;/span&gt;
+&lt;a name=&quot;True-9&quot;&gt;&lt;/a&gt;	
+&lt;a name=&quot;True-10&quot;&gt;&lt;/a&gt;		&lt;span class=&quot;nb&quot;&gt;New-Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;psobject&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-property&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;@{&lt;/span&gt;
+&lt;a name=&quot;True-11&quot;&gt;&lt;/a&gt;                &lt;span class=&quot;s2&quot;&gt;&amp;quot;BusID&amp;quot;&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$busId&lt;/span&gt;
+&lt;a name=&quot;True-12&quot;&gt;&lt;/a&gt;                &lt;span class=&quot;s2&quot;&gt;&amp;quot;DeviceID&amp;quot;&lt;/span&gt;      &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$deviceID&lt;/span&gt;
+&lt;a name=&quot;True-13&quot;&gt;&lt;/a&gt;                &lt;span class=&quot;s2&quot;&gt;&amp;quot;FunctionID&amp;quot;&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$functionID&lt;/span&gt;
+&lt;a name=&quot;True-14&quot;&gt;&lt;/a&gt;        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;a name=&quot;True-15&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;a name=&quot;True-16&quot;&gt;&lt;/a&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;a name=&quot;True-17&quot;&gt;&lt;/a&gt;
 &lt;a name=&quot;True-18&quot;&gt;&lt;/a&gt;&lt;span class=&quot;nv&quot;&gt;$PnPEntities&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Get-WmiObject&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Win32_PnPEntity&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Where-Object&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-like&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;*PCI*&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -43,15 +66,14 @@
 &lt;a name=&quot;True-24&quot;&gt;&lt;/a&gt;    	&lt;span class=&quot;nv&quot;&gt;$businfo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Resolve-PCIBusInfo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-locationInfo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$locationinfo&lt;/span&gt;
 &lt;a name=&quot;True-25&quot;&gt;&lt;/a&gt;		&lt;span class=&quot;nb&quot;&gt;Write-Host&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$dev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Name&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-NoNewline&lt;/span&gt;
 &lt;a name=&quot;True-26&quot;&gt;&lt;/a&gt;		&lt;span class=&quot;nb&quot;&gt;Write-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$businfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;BusID&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$businfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;DeviceID&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$businfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;FunctionID&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt; 
-&lt;a name=&quot;True-27&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; 
-&lt;a name=&quot;True-28&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;a name=&quot;True-29&quot;&gt;&lt;/a&gt;        &lt;span class=&quot;nb&quot;&gt;Write-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$dev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Name&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;: Unknown&amp;quot;&lt;/span&gt;
-&lt;a name=&quot;True-30&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;a name=&quot;True-31&quot;&gt;&lt;/a&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;a name=&quot;True-27&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;a name=&quot;True-28&quot;&gt;&lt;/a&gt;        &lt;span class=&quot;nb&quot;&gt;Write-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$dev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Name&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;: Unknown&amp;quot;&lt;/span&gt;
+&lt;a name=&quot;True-29&quot;&gt;&lt;/a&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;a name=&quot;True-30&quot;&gt;&lt;/a&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Thu, 27 Aug 2015 00:00:00 -0700</pubDate>
-        <link>http://blog.jeremy.tavan.com//2015/08/27/Enumerating%20Windows%20PCI%20Devices.html</link>
-        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/27/Enumerating%20Windows%20PCI%20Devices.html</guid>
+        <link>http://blog.jeremy.tavan.com//2015/08/27/Enumerating_Windows_PCI_Devices.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/27/Enumerating_Windows_PCI_Devices.html</guid>
       </item>
     
       <item>
@@ -91,12 +113,12 @@
 
 &lt;p&gt;Now all I need to do to create a sidenote is to put in a liquid tag:&lt;/p&gt;
 &lt;pre&gt;{.% sidenote And sidenote text goes here %}&lt;/pre&gt;
-&lt;p&gt;and it gets converted into a proper sidenote.&lt;label for=&quot;sn-dhgo5jtykhly&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
-&lt;input type=&quot;checkbox&quot; id=&quot;sn-dhgo5jtykhly&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;Just like this. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;and it gets converted into a proper sidenote.&lt;label for=&quot;sn-tqg0y2c4tkhy&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;sn-tqg0y2c4tkhy&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;Just like this. &lt;/span&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 20 Aug 2015 00:00:00 -0700</pubDate>
-        <link>http://blog.jeremy.tavan.com//2015/08/20/Custom%20Jekyll%20liquid%20tag.html</link>
-        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/20/Custom%20Jekyll%20liquid%20tag.html</guid>
+        <link>http://blog.jeremy.tavan.com//2015/08/20/Custom_Jekyll_liquid_tag.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/20/Custom_Jekyll_liquid_tag.html</guid>
       </item>
     
       <item>
@@ -104,8 +126,8 @@
         <author>Jeremy Tavan</author>
         <description>&lt;p&gt;I’m having a good time figuring out how to build a static page blog using &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;, but there are a few pieces missing for it to really do what I need.&lt;/p&gt;
 
-&lt;p&gt;First, I’m trying to use &lt;a href=&quot;http://www.daveliepmann.com/tufte-css/&quot;&gt;Tufte.css&lt;/a&gt; for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.&lt;label for=&quot;sn-nbsfu1lkdehc&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
-&lt;input type=&quot;checkbox&quot; id=&quot;sn-nbsfu1lkdehc&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;First, I’m trying to use &lt;a href=&quot;http://www.daveliepmann.com/tufte-css/&quot;&gt;Tufte.css&lt;/a&gt; for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.&lt;label for=&quot;sn-7a9mmfg39akl&quot; class=&quot;margin-toggle sidenote-number&quot;&gt;&lt;/label&gt;
+&lt;input type=&quot;checkbox&quot; id=&quot;sn-7a9mmfg39akl&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;sidenote&quot;&gt;That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. &lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;So it looks like I’m going to need to build a custom filter to allow me to use simple directives and have them convert into appropriate sidenote and marginnote HTML. &lt;strong&gt;Update&lt;/strong&gt;: Done. See &lt;a href=&quot;/2015/08/20/Custom%20Jekyll%20liquid%20tag.html&quot;&gt;this post&lt;/a&gt; for details.&lt;/p&gt;
 
@@ -114,8 +136,8 @@
 &lt;p&gt;Both of these things are fairly new to me, so I’m looking forward to figuring out how to do it.&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 Aug 2015 00:00:00 -0700</pubDate>
-        <link>http://blog.jeremy.tavan.com//2015/08/16/Things%20I%20need%20to%20Create.html</link>
-        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/16/Things%20I%20need%20to%20Create.html</guid>
+        <link>http://blog.jeremy.tavan.com//2015/08/16/Things_I_Need_to_Create.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/16/Things_I_Need_to_Create.html</guid>
       </item>
     
       <item>
@@ -139,8 +161,8 @@
 &lt;a name=&quot;True-9&quot;&gt;&lt;/a&gt; &lt;span class=&quot;nv&quot;&gt;whose&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;starts&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Windows 10&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </description>
         <pubDate>Sat, 15 Aug 2015 00:00:00 -0700</pubDate>
-        <link>http://blog.jeremy.tavan.com//2015/08/15/Detecting%20Windows%2010.html</link>
-        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/15/Detecting%20Windows%2010.html</guid>
+        <link>http://blog.jeremy.tavan.com//2015/08/15/Detecting_Windows_10.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/15/Detecting_Windows_10.html</guid>
       </item>
     
       <item>
@@ -148,8 +170,8 @@
         <author>Jeremy Tavan</author>
         <description>&lt;p&gt;So, I&amp;#8217;ve read several discussions about how &lt;!--excerpt.start--&gt;I really should be recording things I do and things I learn in a journal to show as proof that I&amp;#8217;m actually doing and learning things&lt;!--excerpt.end--&gt;. That sounded like good advice, and so I&amp;#8217;ve put together this blog. I&amp;#8217;m going to record my experiences doing security-related stuff at a large research university. I&amp;#8217;ll also document anything else I learn along the way, because learning is good, even if it&amp;#8217;s not directly security-related.&lt;/p&gt;</description>
         <pubDate>Mon, 10 Aug 2015 00:00:00 -0700</pubDate>
-        <link>http://blog.jeremy.tavan.com//2015/08/10/Here%20we%20go.html</link>
-        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/10/Here%20we%20go.html</guid>
+        <link>http://blog.jeremy.tavan.com//2015/08/10/Here_we_go.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/10/Here_we_go.html</guid>
       </item>
     
   </channel>

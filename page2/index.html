@@ -17,14 +17,48 @@
 		<hr/>
 		
 			<section>
-			<p><label for="mn-apw059fz7eqr" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-apw059fz7eqr" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/blog">blog</a>&nbsp;</span></p>
-			<h2><a href="/2015/08/16/Things%20I%20need%20to%20Create.html">Things I Need To Create For This Blog</a></h2> <br/>
+			<p><label for="mn-4p4hl0wjdpmf" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-4p4hl0wjdpmf" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/code">code</a>&nbsp;<a href="/tag/ruby">ruby</a>&nbsp;<a href="/tag/blog">blog</a>&nbsp;</span></p>
+			<h2><a href="/2015/08/20/Custom_Jekyll_liquid_tag.html">Creating a custom liquid tag for Jekyll</a></h2> <br/>
+			20 August 2015
+			
+			<p>In <a href="/2015/08/16/Things%20I%20need%20to%20Create.html">Things I Need To Create For This Blog</a> I mentioned that I needed an easier way to create sidenotes than pasting in a bunch of ugly HTML in my Markdown. So, following the super simple template on the Jekyll page and not knowing any Ruby, I created a Sidenote liquid tag.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><a name="True-1"></a><span class="nb">require</span> <span class="s1">&#39;securerandom&#39;</span>
+<a name="True-2"></a>
+<a name="True-3"></a><span class="k">module</span> <span class="nn">Jekyll</span>
+<a name="True-4"></a>  <span class="k">class</span> <span class="nc">SidenoteTag</span> <span class="o">&lt;</span> <span class="no">Liquid</span><span class="o">::</span><span class="no">Tag</span>
+<a name="True-5"></a>
+<a name="True-6"></a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">tokens</span><span class="p">)</span>
+<a name="True-7"></a>      <span class="k">super</span>
+<a name="True-8"></a>      <span class="vi">@text</span> <span class="o">=</span> <span class="n">text</span>
+<a name="True-9"></a>    <span class="k">end</span>
+<a name="True-10"></a>
+<a name="True-11"></a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+<a name="True-12"></a>	  <span class="nb">id</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">random_number</span><span class="p">(</span><span class="mi">36</span><span class="o">**</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+<a name="True-13"></a>      <span class="s2">&quot;&lt;label for=</span><span class="se">\&quot;</span><span class="s2">sn-</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> class=</span><span class="se">\&quot;</span><span class="s2">margin-toggle sidenote-number</span><span class="se">\&quot;</span><span class="s2">&gt;&lt;/label&gt;</span>
+<a name="True-14"></a><span class="s2">&lt;input type=</span><span class="se">\&quot;</span><span class="s2">checkbox</span><span class="se">\&quot;</span><span class="s2"> id=</span><span class="se">\&quot;</span><span class="s2">sn-</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> class=</span><span class="se">\&quot;</span><span class="s2">margin-toggle</span><span class="se">\&quot;</span><span class="s2">/&gt;&lt;span class=</span><span class="se">\&quot;</span><span class="s2">sidenote</span><span class="se">\&quot;</span><span class="s2">&gt;</span><span class="si">#{</span><span class="vi">@text</span><span class="si">}</span><span class="s2">&lt;/span&gt;&quot;</span>
+<a name="True-15"></a>    <span class="k">end</span>
+<a name="True-16"></a>  <span class="k">end</span>
+<a name="True-17"></a><span class="k">end</span>
+<a name="True-18"></a>
+<a name="True-19"></a><span class="no">Liquid</span><span class="o">::</span><span class="no">Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;sidenote&#39;</span><span class="p">,</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">SidenoteTag</span><span class="p">)</span></code></pre></div>
+
+<p>Now all I need to do to create a sidenote is to put in a liquid tag:</p>
+<pre>{.% sidenote And sidenote text goes here %}</pre>
+<p>and it gets converted into a proper sidenote.<label for="sn-tqg0y2c4tkhy" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-tqg0y2c4tkhy" class="margin-toggle" /><span class="sidenote">Just like this. </span></p>
+
+			</section>
+		
+			<section>
+			<p><label for="mn-tljkoq6lfg7" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-tljkoq6lfg7" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/blog">blog</a>&nbsp;</span></p>
+			<h2><a href="/2015/08/16/Things_I_Need_to_Create.html">Things I Need To Create For This Blog</a></h2> <br/>
 			16 August 2015
 			
 			<p>I’m having a good time figuring out how to build a static page blog using <a href="http://jekyllrb.com/">Jekyll</a>, but there are a few pieces missing for it to really do what I need.</p>
 
-<p>First, I’m trying to use <a href="http://www.daveliepmann.com/tufte-css/">Tufte.css</a> for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.<label for="sn-nbsfu1lkdehc" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-nbsfu1lkdehc" class="margin-toggle" /><span class="sidenote">That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. </span></p>
+<p>First, I’m trying to use <a href="http://www.daveliepmann.com/tufte-css/">Tufte.css</a> for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.<label for="sn-7a9mmfg39akl" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-7a9mmfg39akl" class="margin-toggle" /><span class="sidenote">That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. </span></p>
 
 <p>So it looks like I’m going to need to build a custom filter to allow me to use simple directives and have them convert into appropriate sidenote and marginnote HTML. <strong>Update</strong>: Done. See <a href="/2015/08/20/Custom%20Jekyll%20liquid%20tag.html">this post</a> for details.</p>
 
@@ -35,8 +69,8 @@
 			</section>
 		
 			<section>
-			<p><label for="mn-po9nsguvli37" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-po9nsguvli37" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/bigfix">bigfix</a>&nbsp;<a href="/tag/code">code</a>&nbsp;<a href="/tag/windows">windows</a>&nbsp;</span></p>
-			<h2><a href="/2015/08/15/Detecting%20Windows%2010.html">Detecting Windows 10</a></h2> <br/>
+			<p><label for="mn-lmobtyoivo4y" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-lmobtyoivo4y" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/bigfix">bigfix</a>&nbsp;<a href="/tag/code">code</a>&nbsp;<a href="/tag/windows">windows</a>&nbsp;</span></p>
+			<h2><a href="/2015/08/15/Detecting_Windows_10.html">Detecting Windows 10</a></h2> <br/>
 			15 August 2015
 			
 			<p>Let’s say you’ve got an endpoint management solution in place that doesn’t yet understand Windows 10 and instead reports it as various flavors of Windows 8 or 8.1. How do you detect what flavor of Windows really is running on the system?</p>
@@ -58,23 +92,15 @@
 
 			</section>
 		
-			<section>
-			<p><label for="mn-ufgetlfdt0w4" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-ufgetlfdt0w4" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/blog">blog</a>&nbsp;</span></p>
-			<h2><a href="/2015/08/10/Here%20we%20go.html">Here we go!</a></h2> <br/>
-			10 August 2015
-			
-			<p>So, I&#8217;ve read several discussions about how <!--excerpt.start-->I really should be recording things I do and things I learn in a journal to show as proof that I&#8217;m actually doing and learning things<!--excerpt.end-->. That sounded like good advice, and so I&#8217;ve put together this blog. I&#8217;m going to record my experiences doing security-related stuff at a large research university. I&#8217;ll also document anything else I learn along the way, because learning is good, even if it&#8217;s not directly security-related.</p>
-			</section>
-		
 	</article>
 	<article>
 		<p>
 		
     <a href="/index.html" class="previous">Previous</a>
   
-  <span class="page_number">Page: 2 of 2</span>
+  <span class="page_number">Page: 2 of 3</span>
   
-    <span class="next">Next</span>
+    <a href="/page3" class="next">Next</a>
   
 		</p>
 	
