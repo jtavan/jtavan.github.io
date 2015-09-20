@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+  
+    <title>Clutching at Security Blankets - Tag: education</title>
+   
+    <description>Jeremy Tavan&amp;rsquo;s Security Blog</description>
+	<link>http://blog.jeremy.tavan.com</link>
+    <language>en-us</language>
+	<managingEditor>Jeremy Tavan</managingEditor>
+
+    <atom:link href="http://blog.jeremy.tavan.com/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>SANS SEC501 Reflections</title>
+        <author>Jeremy Tavan</author>
+        <description><![CDATA[
+		   <p>I just returned from <a href="http://sans.org/">SANS</a> <a href="http://sans.org/sec501/">SEC501</a>, my first formal Information Security training class in about fifteen years, held at their Network Security 2015 event in Las Vegas. This is a broad but “Advanced” overview class aimed at getting people a familiarity with as many topics as possible in the time available. I was pleased with the course with a few reservations, and I’m really glad I didn’t take one of the lower-level overview courses (<a href="http://sans.org/sec301/">SEC301</a> or <a href="http://sans.org/sec401">SEC401</a>) because this one was perfectly fine for someone at my level of background and experience. It could have been more challenging and technical and that would have been even better. A few notes on my experience:</p>
+
+<h3 id="a-week-is-a-very-long-time-to-study-a-subject-full-time">A week is a very long time to study a subject full time.</h3>
+<p>This isn’t just a complaint about being away from home and family for a week at a stretch. That’s manageable. The amount of time spent learning at these courses, however, is problematic. It wasn’t unusual for me to spend from 0830 to 2130 in the convention center, between the course itself and the evening lectures and tournament. After a week of this I was really ready for some natural light and fresh air. I know there’s a lot of material to cover, but it’s hard to keep sharp for that many hours at a time even with breaks.</p>
+
+<h3 id="a-week-is-a-very-short-time-for-a-meaningful-class">A week is a very short time for a meaningful class.</h3>
+<p>There’s a huge amount of material to cover in an overview class, and a week just plain isn’t long enough to do it justice. So many topics were breezed through with just top-level bullet points. So many of the labs would have been more useful if we had to really dig in to them and do some analysis rather than just copying and pasting into a terminal. Our instructor definitely enriched the course with humorous and enlightening anecdotes and suggestions,<label for="sn-3sbm1vsmcfv1" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-3sbm1vsmcfv1" class="margin-toggle" /><span class="sidenote">Of course, the discussions of virtualization and testing labs are going to result in some rather expensive purchases. C’est la vie. </span> but had he just gone off the slides I would have felt cheated by the cursory treatment of the subject areas.</p>
+
+<h3 id="netwars-is-a-ton-of-fun">NetWars is a ton of fun.</h3>
+<p>In addition to SEC501, I also signed up for <a href="https://www.sans.org/netwars/dfir-tournament">NetWars DFIR</a> because hey, why not, it’s free with the longform training course. This turned out to be the most entertaining and educational part of the entire trip. I hadn’t touched a computer forensics tool in my life before the day of the tournament, but due to convenient timing of the SEC501 topics, we did a quick overview of forensics tools the day the tournament started. Picture my surprise when I found myself on the leaderboard (10th place) after the first day. On the second day people jumped ahead super quickly,<label for="sn-k7zxsi18d87u" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-k7zxsi18d87u" class="margin-toggle" /><span class="sidenote">I won’t accuse them of working on the questions during the day, but it was pretty suspicious </span> but I still managed to come in 14th out of about 75 participants. I had no idea that digging information out of hard disk, memory, server logs, and network pcap data would be so much fun. This will be a career-influencing experience.</p>
+
+<p>That’s it for my quick reflections. I may well have additional posts to write on the various topics discussed during the class. I would like to thank <a href="https://twitter.com/phenrycissp">Paul Henry</a> for leading a fun and educational intro to InfoSec. I look forward to future, more specialized and detailed classes.</p>
+
+		]]></description>
+        <pubDate>Sun, 20 Sep 2015 00:00:00 -0700</pubDate>
+        <link>http://blog.jeremy.tavan.com//2015/09/20/My_First_Infosec_Training.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/09/20/My_First_Infosec_Training.html</guid>
+      </item>
+    
+      <item>
+        <title>Identifying PCI devices in Powershell</title>
+        <author>Jeremy Tavan</author>
+        <description><![CDATA[
+		   <p>I had a need recently to identify the device that failed on a Dell server. The server reported the failure in terms of PCI Bus, Device, and Function. Unfortunately, unlike Linux with its <code>lspci(8)</code>, Windows doesn’t expose those very easily. The Dell technician suggested installing and running their diagnostic gathering tool on the server, but given protections in place on the server it would have taken some time to do so.<label for="sn-k170t1ll0tnt" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-k170t1ll0tnt" class="margin-toggle" /><span class="sidenote">It should be noted that finding the code to obtain this information took at least as long as whitelisting the tool and running it would have, but was much more educational. </span> A little searching on the Internet and a little assembly of code resulted in the following:</p>
+
+<div class="highlight"><pre><code class="language-powershell" data-lang="powershell"><a name="True-1"></a><span class="k">Function</span> <span class="nb">Resolve-PCIBusInfo</span> <span class="p">{</span>
+<a name="True-2"></a>    <span class="k">param</span> <span class="p">(</span>
+<a name="True-3"></a>        <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">ValueFromPipeline</span><span class="p">=</span><span class="nv">$true</span><span class="p">,</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$true</span><span class="p">)]</span>
+<a name="True-4"></a>        <span class="no">[string]</span> <span class="nv">$locationInfo</span>
+<a name="True-5"></a>    <span class="p">)</span>
+<a name="True-6"></a>    <span class="k">PROCESS</span> <span class="p">{</span>
+<a name="True-7"></a>		<span class="no">[void]</span><span class="p">(</span><span class="nv">$locationInfo</span> <span class="o">-match</span> <span class="s2">&quot;\d+,\d+,\d+&quot;</span><span class="p">)</span>
+<a name="True-8"></a>		<span class="nv">$busId</span><span class="p">,</span><span class="nv">$deviceID</span><span class="p">,</span><span class="nv">$functionID</span> <span class="p">=</span> <span class="nv">$matches</span><span class="p">[</span><span class="n">0</span><span class="p">]</span> <span class="n">-split</span> <span class="s2">&quot;,&quot;</span>
+<a name="True-9"></a>	
+<a name="True-10"></a>		<span class="nb">New-Object</span> <span class="n">psobject</span> <span class="n">-property</span> <span class="p">@{</span>
+<a name="True-11"></a>                <span class="s2">&quot;BusID&quot;</span>         <span class="p">=</span> <span class="nv">$busId</span>
+<a name="True-12"></a>                <span class="s2">&quot;DeviceID&quot;</span>      <span class="p">=</span> <span class="nv">$deviceID</span>
+<a name="True-13"></a>                <span class="s2">&quot;FunctionID&quot;</span>    <span class="p">=</span> <span class="nv">$functionID</span>
+<a name="True-14"></a>        <span class="p">}</span>
+<a name="True-15"></a>    <span class="p">}</span>
+<a name="True-16"></a><span class="p">}</span>
+<a name="True-17"></a>
+<a name="True-18"></a><span class="nv">$PnPEntities</span> <span class="p">=</span> <span class="nb">Get-WmiObject</span> <span class="n">Win32_PnPEntity</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Path</span> <span class="o">-like</span> <span class="s2">&quot;*PCI*&quot;</span> <span class="p">}</span>
+<a name="True-19"></a>
+<a name="True-20"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$dev</span> <span class="k">in</span> <span class="nv">$PnPEntities</span><span class="p">)</span> <span class="p">{</span>
+<a name="True-21"></a>    <span class="nv">$locationinfo</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-ItemProperty</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span> <span class="n">-Path</span> <span class="s2">&quot;HKLM:\SYSTEM\CurrentControlSet\Enum\</span><span class="p">$(</span><span class="nv">$dev</span><span class="p">.</span><span class="s2">&quot;PNPDeviceID&quot;</span><span class="p">)</span><span class="s2">&quot;</span> <span class="n">-name</span> <span class="n">locationinformation</span><span class="p">).</span><span class="n">locationInformation</span>
+<a name="True-22"></a>
+<a name="True-23"></a>    <span class="k">if</span> <span class="p">(</span><span class="nv">$locationinfo</span><span class="p">)</span> <span class="p">{</span> 
+<a name="True-24"></a>    	<span class="nv">$businfo</span> <span class="p">=</span> <span class="nb">Resolve-PCIBusInfo</span> <span class="n">-locationInfo</span> <span class="nv">$locationinfo</span>
+<a name="True-25"></a>		<span class="nb">Write-Host</span> <span class="nv">$dev</span><span class="p">.</span><span class="s2">&quot;Name&quot;</span> <span class="n">-NoNewline</span>
+<a name="True-26"></a>		<span class="nb">Write-Host</span> <span class="s2">&quot;: </span><span class="p">$(</span><span class="nv">$businfo</span><span class="p">.</span><span class="s2">&quot;BusID&quot;</span><span class="p">)</span><span class="s2">,</span><span class="p">$(</span><span class="nv">$businfo</span><span class="p">.</span><span class="s2">&quot;DeviceID&quot;</span><span class="p">)</span><span class="s2">,</span><span class="p">$(</span><span class="nv">$businfo</span><span class="p">.</span><span class="s2">&quot;FunctionID&quot;</span><span class="p">)</span><span class="s2">&quot;</span> 
+<a name="True-27"></a>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<a name="True-28"></a>        <span class="nb">Write-Host</span> <span class="s2">&quot;</span><span class="p">$(</span><span class="nv">$dev</span><span class="p">.</span><span class="s2">&quot;Name&quot;</span><span class="p">)</span><span class="s2">: Unknown&quot;</span>
+<a name="True-29"></a>    <span class="p">}</span>
+<a name="True-30"></a><span class="p">}</span></code></pre></div>
+
+		]]></description>
+        <pubDate>Thu, 27 Aug 2015 00:00:00 -0700</pubDate>
+        <link>http://blog.jeremy.tavan.com//2015/08/27/Enumerating_Windows_PCI_Devices.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/27/Enumerating_Windows_PCI_Devices.html</guid>
+      </item>
+    
+      <item>
+        <title>Earplugs. Yes.</title>
+        <author>Jeremy Tavan</author>
+        <description><![CDATA[
+		   <p>Earplugs. Own them and use them. You never know when you’re going to be working on a server in a datacenter that has an unkillable, unbearably loud thermal alarm going off at the time. It’s hard to work with your hands when they’re in your ears. Even when there’s no alarm, datacenters are loud and unpleasant. Reduce that unpleasantness with earplugs.</p>
+
+		]]></description>
+        <pubDate>Wed, 26 Aug 2015 00:00:00 -0700</pubDate>
+        <link>http://blog.jeremy.tavan.com//2015/08/26/Earplugs.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/26/Earplugs.html</guid>
+      </item>
+    
+      <item>
+        <title>Creating a custom liquid tag for Jekyll</title>
+        <author>Jeremy Tavan</author>
+        <description><![CDATA[
+		   <p>In <a href="/2015/08/16/Things%20I%20need%20to%20Create.html">Things I Need To Create For This Blog</a> I mentioned that I needed an easier way to create sidenotes than pasting in a bunch of ugly HTML in my Markdown. So, following the super simple template on the Jekyll page and not knowing any Ruby, I created a Sidenote liquid tag.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><a name="True-1"></a><span class="nb">require</span> <span class="s1">&#39;securerandom&#39;</span>
+<a name="True-2"></a>
+<a name="True-3"></a><span class="k">module</span> <span class="nn">Jekyll</span>
+<a name="True-4"></a>  <span class="k">class</span> <span class="nc">SidenoteTag</span> <span class="o">&lt;</span> <span class="no">Liquid</span><span class="o">::</span><span class="no">Tag</span>
+<a name="True-5"></a>
+<a name="True-6"></a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">tokens</span><span class="p">)</span>
+<a name="True-7"></a>      <span class="k">super</span>
+<a name="True-8"></a>      <span class="vi">@text</span> <span class="o">=</span> <span class="n">text</span>
+<a name="True-9"></a>    <span class="k">end</span>
+<a name="True-10"></a>
+<a name="True-11"></a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+<a name="True-12"></a>	  <span class="nb">id</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">random_number</span><span class="p">(</span><span class="mi">36</span><span class="o">**</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
+<a name="True-13"></a>      <span class="s2">&quot;&lt;label for=</span><span class="se">\&quot;</span><span class="s2">sn-</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> class=</span><span class="se">\&quot;</span><span class="s2">margin-toggle sidenote-number</span><span class="se">\&quot;</span><span class="s2">&gt;&lt;/label&gt;</span>
+<a name="True-14"></a><span class="s2">&lt;input type=</span><span class="se">\&quot;</span><span class="s2">checkbox</span><span class="se">\&quot;</span><span class="s2"> id=</span><span class="se">\&quot;</span><span class="s2">sn-</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> class=</span><span class="se">\&quot;</span><span class="s2">margin-toggle</span><span class="se">\&quot;</span><span class="s2">/&gt;&lt;span class=</span><span class="se">\&quot;</span><span class="s2">sidenote</span><span class="se">\&quot;</span><span class="s2">&gt;</span><span class="si">#{</span><span class="vi">@text</span><span class="si">}</span><span class="s2">&lt;/span&gt;&quot;</span>
+<a name="True-15"></a>    <span class="k">end</span>
+<a name="True-16"></a>  <span class="k">end</span>
+<a name="True-17"></a><span class="k">end</span>
+<a name="True-18"></a>
+<a name="True-19"></a><span class="no">Liquid</span><span class="o">::</span><span class="no">Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;sidenote&#39;</span><span class="p">,</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">SidenoteTag</span><span class="p">)</span></code></pre></div>
+
+<p>Now all I need to do to create a sidenote is to put in a liquid tag:</p>
+<pre>{.% sidenote And sidenote text goes here %}</pre>
+<p>and it gets converted into a proper sidenote.<label for="sn-tqg0y2c4tkhy" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-tqg0y2c4tkhy" class="margin-toggle" /><span class="sidenote">Just like this. </span></p>
+
+		]]></description>
+        <pubDate>Thu, 20 Aug 2015 00:00:00 -0700</pubDate>
+        <link>http://blog.jeremy.tavan.com//2015/08/20/Custom_Jekyll_liquid_tag.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/20/Custom_Jekyll_liquid_tag.html</guid>
+      </item>
+    
+      <item>
+        <title>Things I Need To Create For This Blog</title>
+        <author>Jeremy Tavan</author>
+        <description><![CDATA[
+		   <p>I’m having a good time figuring out how to build a static page blog using <a href="http://jekyllrb.com/">Jekyll</a>, but there are a few pieces missing for it to really do what I need.</p>
+
+<p>First, I’m trying to use <a href="http://www.daveliepmann.com/tufte-css/">Tufte.css</a> for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.<label for="sn-7a9mmfg39akl" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-7a9mmfg39akl" class="margin-toggle" /><span class="sidenote">That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. </span></p>
+
+<p>So it looks like I’m going to need to build a custom filter to allow me to use simple directives and have them convert into appropriate sidenote and marginnote HTML. <strong>Update</strong>: Done. See <a href="/2015/08/20/Custom%20Jekyll%20liquid%20tag.html">this post</a> for details.</p>
+
+<p>Second, given how much of the work I do is in BigFix Relevance Language and BigFix Action Script, I’m going to have to extend the <a href="http://pygments.org/">pygments</a> syntax highlighter with a custom language lexer for those. And then there will be the fun of designing a syntax highlighting stylesheet that doesn’t pollute my pages with a rainbow of fruity highlighting modes.</p>
+
+<p>Both of these things are fairly new to me, so I’m looking forward to figuring out how to do it.</p>
+
+		]]></description>
+        <pubDate>Sun, 16 Aug 2015 00:00:00 -0700</pubDate>
+        <link>http://blog.jeremy.tavan.com//2015/08/16/Things_I_Need_to_Create.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/16/Things_I_Need_to_Create.html</guid>
+      </item>
+    
+      <item>
+        <title>Detecting Windows 10</title>
+        <author>Jeremy Tavan</author>
+        <description><![CDATA[
+		   <p>Let’s say you’ve got an endpoint management solution in place that doesn’t yet understand Windows 10 and instead reports it as various flavors of Windows 8 or 8.1. How do you detect what flavor of Windows really is running on the system?</p>
+
+<pre><code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProductName
+</code></pre>
+
+<p>Nothing Earth-shattering about this one, but it was a simple solution to the problem. In BigFix Relevance, we can use the following (though it will be unnecessary once we’re running the version that has native detection for Windows 10):</p>
+
+<div class="highlight"><pre><code class="language-scheme" data-lang="scheme"><a name="True-1"></a><span class="p">(</span><span class="nf">exists</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">x64</span> <span class="nv">of</span> <span class="nv">operating</span> <span class="nv">system</span><span class="p">)</span> <span class="nv">then</span> 
+<a name="True-2"></a>            <span class="nv">unique</span> <span class="nv">values</span> <span class="nv">of</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">as</span> <span class="nv">string</span> <span class="nv">as</span> <span class="nv">trimmed</span> <span class="nv">string</span><span class="p">)</span> 
+<a name="True-3"></a>                <span class="nv">of</span> <span class="nv">values</span> <span class="s">&quot;ProductName&quot;</span> 
+<a name="True-4"></a>                    <span class="nv">of</span> <span class="nv">keys</span> <span class="s">&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot;</span> 
+<a name="True-5"></a>                        <span class="nv">of</span> <span class="p">(</span><span class="nf">x32</span> <span class="nv">registries</span><span class="c1">;x64 registries) </span>
+<a name="True-6"></a>        <span class="k">else </span><span class="nv">unique</span> <span class="nv">values</span> <span class="nv">of</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">as</span> <span class="nv">string</span> <span class="nv">as</span> <span class="nv">trimmed</span> <span class="nv">string</span><span class="p">)</span> 
+<a name="True-7"></a>            <span class="nv">of</span> <span class="nv">values</span> <span class="s">&quot;ProductName&quot;</span> <span class="nv">of</span> <span class="nv">keys</span> <span class="s">&quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion&quot;</span> 
+<a name="True-8"></a>                <span class="nv">of</span> <span class="nv">registry</span><span class="p">)</span> 
+<a name="True-9"></a> <span class="nv">whose</span> <span class="p">(</span><span class="nf">it</span> <span class="nv">starts</span> <span class="nv">with</span> <span class="s">&quot;Windows 10&quot;</span><span class="p">))</span></code></pre></div>
+
+		]]></description>
+        <pubDate>Sat, 15 Aug 2015 00:00:00 -0700</pubDate>
+        <link>http://blog.jeremy.tavan.com//2015/08/15/Detecting_Windows_10.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/15/Detecting_Windows_10.html</guid>
+      </item>
+    
+      <item>
+        <title>Here we go!</title>
+        <author>Jeremy Tavan</author>
+        <description><![CDATA[
+		   <p>So, I&#8217;ve read several discussions about how <!--excerpt.start-->I really should be recording things I do and things I learn in a journal to show as proof that I&#8217;m actually doing and learning things<!--excerpt.end-->. That sounded like good advice, and so I&#8217;ve put together this blog. I&#8217;m going to record my experiences doing security-related stuff at a large research university. I&#8217;ll also document anything else I learn along the way, because learning is good, even if it&#8217;s not directly security-related.</p>
+		]]></description>
+        <pubDate>Mon, 10 Aug 2015 00:00:00 -0700</pubDate>
+        <link>http://blog.jeremy.tavan.com//2015/08/10/Here_we_go.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2015/08/10/Here_we_go.html</guid>
+      </item>
+    
+  </channel>
+</rss>
