@@ -21,7 +21,7 @@
 		</section>
 		<p>In <a href="/2015/08/16/Things%20I%20need%20to%20Create.html">Things I Need To Create For This Blog</a> I mentioned that I needed an easier way to create sidenotes than pasting in a bunch of ugly HTML in my Markdown. So, following the super simple template on the Jekyll page and not knowing any Ruby, I created a Sidenote liquid tag.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><a name="True-1"></a><span class="nb">require</span> <span class="s1">&#39;securerandom&#39;</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><a name="True-1"></a><span class="nb">require</span> <span class="s1">&#39;securerandom&#39;</span>
 <a name="True-2"></a>
 <a name="True-3"></a><span class="k">module</span> <span class="nn">Jekyll</span>
 <a name="True-4"></a>  <span class="k">class</span> <span class="nc">SidenoteTag</span> <span class="o">&lt;</span> <span class="no">Liquid</span><span class="o">::</span><span class="no">Tag</span>
@@ -39,12 +39,12 @@
 <a name="True-16"></a>  <span class="k">end</span>
 <a name="True-17"></a><span class="k">end</span>
 <a name="True-18"></a>
-<a name="True-19"></a><span class="no">Liquid</span><span class="o">::</span><span class="no">Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;sidenote&#39;</span><span class="p">,</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">SidenoteTag</span><span class="p">)</span></code></pre></div>
+<a name="True-19"></a><span class="no">Liquid</span><span class="o">::</span><span class="no">Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;sidenote&#39;</span><span class="p">,</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">SidenoteTag</span><span class="p">)</span></code></pre></figure>
 
 <p>Now all I need to do to create a sidenote is to put in a liquid tag:</p>
 <pre>{.% sidenote And sidenote text goes here %}</pre>
-<p>and it gets converted into a proper sidenote.<label for="sn-yt9pmrc83hfk" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-yt9pmrc83hfk" class="margin-toggle" /><span class="sidenote">Just like this. </span></p>
+<p>and it gets converted into a proper sidenote.<label for="sn-n9i2oxjgbll3" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-n9i2oxjgbll3" class="margin-toggle" /><span class="sidenote">Just like this. </span></p>
 
 	<p>This article is tagged: <span class="taglist">
 	

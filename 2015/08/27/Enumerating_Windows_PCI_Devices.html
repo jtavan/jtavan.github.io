@@ -19,10 +19,10 @@
 			<h2>Identifying PCI devices in Powershell</h2><br/>
 			27 August 2015
 		</section>
-		<p>I had a need recently to identify the device that failed on a Dell server. The server reported the failure in terms of PCI Bus, Device, and Function. Unfortunately, unlike Linux with its <code>lspci(8)</code>, Windows doesn’t expose those very easily. The Dell technician suggested installing and running their diagnostic gathering tool on the server, but given protections in place on the server it would have taken some time to do so.<label for="sn-b9983hnrhjl5" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-b9983hnrhjl5" class="margin-toggle" /><span class="sidenote">It should be noted that finding the code to obtain this information took at least as long as whitelisting the tool and running it would have, but was much more educational. </span> A little searching on the Internet and a little assembly of code resulted in the following:</p>
+		<p>I had a need recently to identify the device that failed on a Dell server. The server reported the failure in terms of PCI Bus, Device, and Function. Unfortunately, unlike Linux with its <code>lspci(8)</code>, Windows doesn’t expose those very easily. The Dell technician suggested installing and running their diagnostic gathering tool on the server, but given protections in place on the server it would have taken some time to do so.<label for="sn-pp6ri4lui63n" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-pp6ri4lui63n" class="margin-toggle" /><span class="sidenote">It should be noted that finding the code to obtain this information took at least as long as whitelisting the tool and running it would have, but was much more educational. </span> A little searching on the Internet and a little assembly of code resulted in the following:</p>
 
-<div class="highlight"><pre><code class="language-powershell" data-lang="powershell"><a name="True-1"></a><span class="k">Function</span> <span class="nb">Resolve-PCIBusInfo</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><a name="True-1"></a><span class="k">Function</span> <span class="nb">Resolve-PCIBusInfo</span> <span class="p">{</span>
 <a name="True-2"></a>    <span class="k">param</span> <span class="p">(</span>
 <a name="True-3"></a>        <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">ValueFromPipeline</span><span class="p">=</span><span class="nv">$true</span><span class="p">,</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$true</span><span class="p">)]</span>
 <a name="True-4"></a>        <span class="no">[string]</span> <span class="nv">$locationInfo</span>
@@ -51,7 +51,7 @@
 <a name="True-27"></a>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 <a name="True-28"></a>        <span class="nb">Write-Host</span> <span class="s2">&quot;</span><span class="p">$(</span><span class="nv">$dev</span><span class="p">.</span><span class="s2">&quot;Name&quot;</span><span class="p">)</span><span class="s2">: Unknown&quot;</span>
 <a name="True-29"></a>    <span class="p">}</span>
-<a name="True-30"></a><span class="p">}</span></code></pre></div>
+<a name="True-30"></a><span class="p">}</span></code></pre></figure>
 
 	<p>This article is tagged: <span class="taglist">
 	

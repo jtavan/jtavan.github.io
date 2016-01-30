@@ -17,14 +17,36 @@
 		<hr/>
 		
 			<section>
-			<p><label for="mn-qclt6qvlmg7t" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-qclt6qvlmg7t" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/code">code</a>&nbsp;<a href="/tag/windows">windows</a>&nbsp;<a href="/tag/powershell">powershell</a>&nbsp;</span></p>
+			<p><label for="mn-hxaabt8zihll" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-hxaabt8zihll" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/security">security</a>&nbsp;<a href="/tag/education">education</a>&nbsp;</span></p>
+			<h2><a href="/2015/09/20/My_First_Infosec_Training.html">SANS SEC501 Reflections</a></h2> <br/>
+			20 September 2015
+			
+			<p>I just returned from <a href="http://sans.org/">SANS</a> <a href="http://sans.org/sec501/">SEC501</a>, my first formal Information Security training class in about fifteen years, held at their Network Security 2015 event in Las Vegas. This is a broad but “Advanced” overview class aimed at getting people a familiarity with as many topics as possible in the time available. I was pleased with the course with a few reservations, and I’m really glad I didn’t take one of the lower-level overview courses (<a href="http://sans.org/sec301/">SEC301</a> or <a href="http://sans.org/sec401">SEC401</a>) because this one was perfectly fine for someone at my level of background and experience. It could have been more challenging and technical and that would have been even better. A few notes on my experience:</p>
+
+<h3 id="a-week-is-a-very-long-time-to-study-a-subject-full-time">A week is a very long time to study a subject full time.</h3>
+<p>This isn’t just a complaint about being away from home and family for a week at a stretch. That’s manageable. The amount of time spent learning at these courses, however, is problematic. It wasn’t unusual for me to spend from 0830 to 2130 in the convention center, between the course itself and the evening lectures and tournament. After a week of this I was really ready for some natural light and fresh air. I know there’s a lot of material to cover, but it’s hard to keep sharp for that many hours at a time even with breaks.</p>
+
+<h3 id="a-week-is-a-very-short-time-for-a-meaningful-class">A week is a very short time for a meaningful class.</h3>
+<p>There’s a huge amount of material to cover in an overview class, and a week just plain isn’t long enough to do it justice. So many topics were breezed through with just top-level bullet points. So many of the labs would have been more useful if we had to really dig in to them and do some analysis rather than just copying and pasting into a terminal. Our instructor definitely enriched the course with humorous and enlightening anecdotes and suggestions,<label for="sn-1axlw32fg8v6" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-1axlw32fg8v6" class="margin-toggle" /><span class="sidenote">Of course, the discussions of virtualization and testing labs are going to result in some rather expensive purchases. C’est la vie. </span> but had he just gone off the slides I would have felt cheated by the cursory treatment of the subject areas.</p>
+
+<h3 id="netwars-is-a-ton-of-fun">NetWars is a ton of fun.</h3>
+<p>In addition to SEC501, I also signed up for <a href="https://www.sans.org/netwars/dfir-tournament">NetWars DFIR</a> because hey, why not, it’s free with the longform training course. This turned out to be the most entertaining and educational part of the entire trip. I hadn’t touched a computer forensics tool in my life before the day of the tournament, but due to convenient timing of the SEC501 topics, we did a quick overview of forensics tools the day the tournament started. Picture my surprise when I found myself on the leaderboard (10th place) after the first day. On the second day people jumped ahead super quickly,<label for="sn-k26v3xwp7nk8" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-k26v3xwp7nk8" class="margin-toggle" /><span class="sidenote">I won’t accuse them of working on the questions during the day, but it was pretty suspicious </span> but I still managed to come in 14th out of about 75 participants. I had no idea that digging information out of hard disk, memory, server logs, and network pcap data would be so much fun. This will be a career-influencing experience.</p>
+
+<p>That’s it for my quick reflections. I may well have additional posts to write on the various topics discussed during the class. I would like to thank <a href="https://twitter.com/phenrycissp">Paul Henry</a> for leading a fun and educational intro to InfoSec. I look forward to future, more specialized and detailed classes.</p>
+
+			</section>
+		
+			<section>
+			<p><label for="mn-spfolx4sc56v" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-spfolx4sc56v" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/code">code</a>&nbsp;<a href="/tag/windows">windows</a>&nbsp;<a href="/tag/powershell">powershell</a>&nbsp;</span></p>
 			<h2><a href="/2015/08/27/Enumerating_Windows_PCI_Devices.html">Identifying PCI devices in Powershell</a></h2> <br/>
 			27 August 2015
 			
-			<p>I had a need recently to identify the device that failed on a Dell server. The server reported the failure in terms of PCI Bus, Device, and Function. Unfortunately, unlike Linux with its <code>lspci(8)</code>, Windows doesn’t expose those very easily. The Dell technician suggested installing and running their diagnostic gathering tool on the server, but given protections in place on the server it would have taken some time to do so.<label for="sn-b9983hnrhjl5" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-b9983hnrhjl5" class="margin-toggle" /><span class="sidenote">It should be noted that finding the code to obtain this information took at least as long as whitelisting the tool and running it would have, but was much more educational. </span> A little searching on the Internet and a little assembly of code resulted in the following:</p>
+			<p>I had a need recently to identify the device that failed on a Dell server. The server reported the failure in terms of PCI Bus, Device, and Function. Unfortunately, unlike Linux with its <code>lspci(8)</code>, Windows doesn’t expose those very easily. The Dell technician suggested installing and running their diagnostic gathering tool on the server, but given protections in place on the server it would have taken some time to do so.<label for="sn-pp6ri4lui63n" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-pp6ri4lui63n" class="margin-toggle" /><span class="sidenote">It should be noted that finding the code to obtain this information took at least as long as whitelisting the tool and running it would have, but was much more educational. </span> A little searching on the Internet and a little assembly of code resulted in the following:</p>
 
-<div class="highlight"><pre><code class="language-powershell" data-lang="powershell"><a name="True-1"></a><span class="k">Function</span> <span class="nb">Resolve-PCIBusInfo</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><a name="True-1"></a><span class="k">Function</span> <span class="nb">Resolve-PCIBusInfo</span> <span class="p">{</span>
 <a name="True-2"></a>    <span class="k">param</span> <span class="p">(</span>
 <a name="True-3"></a>        <span class="p">[</span><span class="k">parameter</span><span class="p">(</span><span class="k">ValueFromPipeline</span><span class="p">=</span><span class="nv">$true</span><span class="p">,</span><span class="k">Mandatory</span><span class="p">=</span><span class="nv">$true</span><span class="p">)]</span>
 <a name="True-4"></a>        <span class="no">[string]</span> <span class="nv">$locationInfo</span>
@@ -53,12 +75,12 @@
 <a name="True-27"></a>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 <a name="True-28"></a>        <span class="nb">Write-Host</span> <span class="s2">&quot;</span><span class="p">$(</span><span class="nv">$dev</span><span class="p">.</span><span class="s2">&quot;Name&quot;</span><span class="p">)</span><span class="s2">: Unknown&quot;</span>
 <a name="True-29"></a>    <span class="p">}</span>
-<a name="True-30"></a><span class="p">}</span></code></pre></div>
+<a name="True-30"></a><span class="p">}</span></code></pre></figure>
 
 			</section>
 		
 			<section>
-			<p><label for="mn-pb0tfb1r7aez" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-pb0tfb1r7aez" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/server">server</a>&nbsp;<a href="/tag/ops">ops</a>&nbsp;</span></p>
+			<p><label for="mn-qo5rtkhnzc01" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-qo5rtkhnzc01" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/server">server</a>&nbsp;<a href="/tag/ops">ops</a>&nbsp;</span></p>
 			<h2><a href="/2015/08/26/Earplugs.html">Earplugs. Yes.</a></h2> <br/>
 			26 August 2015
 			
@@ -66,47 +88,13 @@
 
 			</section>
 		
-			<section>
-			<p><label for="mn-lm9rstku9o31" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-lm9rstku9o31" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/code">code</a>&nbsp;<a href="/tag/ruby">ruby</a>&nbsp;<a href="/tag/blog">blog</a>&nbsp;</span></p>
-			<h2><a href="/2015/08/20/Custom_Jekyll_liquid_tag.html">Creating a custom liquid tag for Jekyll</a></h2> <br/>
-			20 August 2015
-			
-			<p>In <a href="/2015/08/16/Things%20I%20need%20to%20Create.html">Things I Need To Create For This Blog</a> I mentioned that I needed an easier way to create sidenotes than pasting in a bunch of ugly HTML in my Markdown. So, following the super simple template on the Jekyll page and not knowing any Ruby, I created a Sidenote liquid tag.</p>
-
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><a name="True-1"></a><span class="nb">require</span> <span class="s1">&#39;securerandom&#39;</span>
-<a name="True-2"></a>
-<a name="True-3"></a><span class="k">module</span> <span class="nn">Jekyll</span>
-<a name="True-4"></a>  <span class="k">class</span> <span class="nc">SidenoteTag</span> <span class="o">&lt;</span> <span class="no">Liquid</span><span class="o">::</span><span class="no">Tag</span>
-<a name="True-5"></a>
-<a name="True-6"></a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">tokens</span><span class="p">)</span>
-<a name="True-7"></a>      <span class="k">super</span>
-<a name="True-8"></a>      <span class="vi">@text</span> <span class="o">=</span> <span class="n">text</span>
-<a name="True-9"></a>    <span class="k">end</span>
-<a name="True-10"></a>
-<a name="True-11"></a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
-<a name="True-12"></a>	  <span class="nb">id</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">random_number</span><span class="p">(</span><span class="mi">36</span><span class="o">**</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">)</span>
-<a name="True-13"></a>      <span class="s2">&quot;&lt;label for=</span><span class="se">\&quot;</span><span class="s2">sn-</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> class=</span><span class="se">\&quot;</span><span class="s2">margin-toggle sidenote-number</span><span class="se">\&quot;</span><span class="s2">&gt;&lt;/label&gt;</span>
-<a name="True-14"></a><span class="s2">&lt;input type=</span><span class="se">\&quot;</span><span class="s2">checkbox</span><span class="se">\&quot;</span><span class="s2"> id=</span><span class="se">\&quot;</span><span class="s2">sn-</span><span class="si">#{</span><span class="nb">id</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> class=</span><span class="se">\&quot;</span><span class="s2">margin-toggle</span><span class="se">\&quot;</span><span class="s2">/&gt;&lt;span class=</span><span class="se">\&quot;</span><span class="s2">sidenote</span><span class="se">\&quot;</span><span class="s2">&gt;</span><span class="si">#{</span><span class="vi">@text</span><span class="si">}</span><span class="s2">&lt;/span&gt;&quot;</span>
-<a name="True-15"></a>    <span class="k">end</span>
-<a name="True-16"></a>  <span class="k">end</span>
-<a name="True-17"></a><span class="k">end</span>
-<a name="True-18"></a>
-<a name="True-19"></a><span class="no">Liquid</span><span class="o">::</span><span class="no">Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;sidenote&#39;</span><span class="p">,</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">SidenoteTag</span><span class="p">)</span></code></pre></div>
-
-<p>Now all I need to do to create a sidenote is to put in a liquid tag:</p>
-<pre>{.% sidenote And sidenote text goes here %}</pre>
-<p>and it gets converted into a proper sidenote.<label for="sn-yt9pmrc83hfk" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-yt9pmrc83hfk" class="margin-toggle" /><span class="sidenote">Just like this. </span></p>
-
-			</section>
-		
 	</article>
 	<article>
 		<p>
 		
-    <a href="/index.html" class="previous">Previous</a>
+    <a href="/" class="previous">Previous</a>
   
-  <span class="page_number">Page: 2 of 3</span>
+  <span class="page_number">Page: 2 of 4</span>
   
     <a href="/page3" class="next">Next</a>
   
