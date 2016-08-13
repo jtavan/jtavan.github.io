@@ -12,6 +12,27 @@
     <atom:link href="http://blog.jeremy.tavan.com/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>What Makes a Linux Admin</title>
+        <author>Jeremy Tavan</author>
+        <description><![CDATA[
+		   <p>In both Windows and MacOS, the definition of an “administrator” account is fairly easy. Under Windows, you look at the Administrators group. On MacOS there are a few ways to enumerate admins, but it all boils down to the users who have the “Allow user to administer this computer” checkbox checked. Under Linux, things aren’t so straightforward. How would one define a Linux admin account for purposes of inventory and monitoring? I started thinking about this recently and came up with the following definition, which is definitely a work in progress:</p>
+
+<p>An administrator of a Linux server is anyone who meets any of the following definitions:
+1. Is UID 0 
+2. Is a member of the group ‘wheel’ or ‘admin’ or ‘administrators’ or ‘root’
+3. Exists in the sudoers file with an ALL permission line
+4. Exists in a group that exists in the sudoers file with an ALL permission line
+5. Exists in the .k5login file of any user account meeting any of criteria 1-4.</p>
+
+<p>There must be other criteria I’m missing, but this seems like a good place to start.</p>
+
+		]]></description>
+        <pubDate>Sat, 13 Aug 2016 00:00:00 -0700</pubDate>
+        <link>http://blog.jeremy.tavan.com//2016/08/13/Linux-Admins.html</link>
+        <guid isPermaLink="true">http://blog.jeremy.tavan.com//2016/08/13/Linux-Admins.html</guid>
+      </item>
+    
+      <item>
         <title>I figured out the mystery!</title>
         <author>Jeremy Tavan</author>
         <description><![CDATA[
@@ -59,15 +80,15 @@
         <title>Building a Home Enterprise Network Part 1</title>
         <author>Jeremy Tavan</author>
         <description><![CDATA[
-		   <p>I decided, during my recent SANS overview course’s day on defensive network infrastructure, that I really don’t know enough about networking. Sure, I had all the basics - I understood the basics of the <a href="https://en.wikipedia.org/wiki/OSI_model">OSI model</a>, setting up computers to talk to each other over TCP/IP, <a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a> notation, how to crimp a functional RJ45 patch cable, &amp;c. but I really had never had to learn about how enterprise networks go together. My employer has a large department to take care of that - I just have to use the thing. But I’m not comfortable just using the thing. So I decided to teach myself networking and network security by building the most complicated home network in California.<label for="sn-sx0vdovuo7ak" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-sx0vdovuo7ak" class="margin-toggle" /><span class="sidenote">This may be an exaggeration, but probably not by a whole lot.</span></p>
+		   <p>I decided, during my recent SANS overview course’s day on defensive network infrastructure, that I really don’t know enough about networking. Sure, I had all the basics - I understood the basics of the <a href="https://en.wikipedia.org/wiki/OSI_model">OSI model</a>, setting up computers to talk to each other over TCP/IP, <a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a> notation, how to crimp a functional RJ45 patch cable, &amp;c. but I really had never had to learn about how enterprise networks go together. My employer has a large department to take care of that - I just have to use the thing. But I’m not comfortable just using the thing. So I decided to teach myself networking and network security by building the most complicated home network in California.<label for="sn-1sv6ps9ci68" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-1sv6ps9ci68" class="margin-toggle" /><span class="sidenote">This may be an exaggeration, but probably not by a whole lot.</span></p>
 
-<p>I’m not going to put a complete network diagram in this blog posting,<label for="sn-x0gr3qggtitx" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-x0gr3qggtitx" class="margin-toggle" /><span class="sidenote">If you’re interested in the details, get in contact with me and I’d be happy to discuss it. </span> but let’s go over some of the most interesting features of what I’ve done so far and what’s planned.</p>
+<p>I’m not going to put a complete network diagram in this blog posting,<label for="sn-j32h41qfl9i8" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-j32h41qfl9i8" class="margin-toggle" /><span class="sidenote">If you’re interested in the details, get in contact with me and I’d be happy to discuss it. </span> but let’s go over some of the most interesting features of what I’ve done so far and what’s planned.</p>
 
 <h3 id="virtualization-server">Virtualization Server</h3>
-<p>One of the first things I bought was a virtualization server, because I knew that I wanted to pull most of the services running on my network off of the desktop computers currently running them and place them on a power-efficient, modern virtualization system. I’m running ProxMox 4 as the base management system, and have a number of KVM virtual machines and LXC containers in place and planned. Unfortunately, I’m currently experiencing severe performance issues between the LXC containers and the outside network via the virtio network drivers and an Open vSwitch bridge on the host.<label for="sn-t7atapwqts3n" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-t7atapwqts3n" class="margin-toggle" /><span class="sidenote">Does anyone know what causes these &lt;1kB/s throughputs? Please contact me!</span></p>
+<p>One of the first things I bought was a virtualization server, because I knew that I wanted to pull most of the services running on my network off of the desktop computers currently running them and place them on a power-efficient, modern virtualization system. I’m running ProxMox 4 as the base management system, and have a number of KVM virtual machines and LXC containers in place and planned. Unfortunately, I’m currently experiencing severe performance issues between the LXC containers and the outside network via the virtio network drivers and an Open vSwitch bridge on the host.<label for="sn-mnv8colbgr70" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-mnv8colbgr70" class="margin-toggle" /><span class="sidenote">Does anyone know what causes these &lt;1kB/s throughputs? Please contact me!</span></p>
 
 <p>The server itself is a mini-ITX motherboard with one of the new Intel Xeon 1540D chips on board. 8 cores, 16 threads, and 45W TDP. Talks to &gt;64GB of DDR4, has piles of SATA ports and five network ports (two 1Gig, two 10Gig copper, one IPMI). Slapped that plus a couple ZFS mirrored 1TB SSDs in a cute little 2U rackmount box from <a href="http://www.plinkusa.com/">PLinkUSA</a> and I have most all the compute I need for services on the network.</p>
 
@@ -78,15 +99,15 @@
 <p>My router is a KVM virtual machine running <a href="http://www.pfsense.org/">pfSense</a>. I’d never played with pfSense before, but I’m really impressed. It’s like you took all those web GUIs from home routers and configured them for every feature you could possibly ever want and removed all the extraneous graphical crap. It even has a package management system for adding more features - installing NUT for talking to my UPS’s SNMP interface was about a 5 minute job. The only real issue I have with pfSense is that the firewall rules are basically backwards from what I’m used to. You configure rules based on the network that is ORIGINATING the traffic, not based on what’s allowed to enter the destination network. So much confusion at first, but in their defense they DO document that somewhat.</p>
 
 <h3 id="vlans">VLANs</h3>
-<p>Oh yes, we do VLANs in this household. Currently running separate VLANs for storage, PCs, printers, IoT devices, media devices, infrastructure management interfaces, external-facing services, security cameras … It’s a pain to have to buy and configure a bunch of smart-ish switches<label for="sn-9itwn424byiv" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-9itwn424byiv" class="margin-toggle" /><span class="sidenote">Do not buy the Netgear GS108PEv3 (or earlier versions of the same thing). It’s a garbage pocket switch that claims to support proper 802.1q but doesn’t fully. You can’t (as far as I’ve been able to determine) set it up for a management VLAN.</span> but I like the segmentation and the control that this gives me with firewalls over what talks to what. It should also make detection of bad easier.</p>
+<p>Oh yes, we do VLANs in this household. Currently running separate VLANs for storage, PCs, printers, IoT devices, media devices, infrastructure management interfaces, external-facing services, security cameras … It’s a pain to have to buy and configure a bunch of smart-ish switches<label for="sn-ryszjwvjps2j" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-ryszjwvjps2j" class="margin-toggle" /><span class="sidenote">Do not buy the Netgear GS108PEv3 (or earlier versions of the same thing). It’s a garbage pocket switch that claims to support proper 802.1q but doesn’t fully. You can’t (as far as I’ve been able to determine) set it up for a management VLAN.</span> but I like the segmentation and the control that this gives me with firewalls over what talks to what. It should also make detection of bad easier.</p>
 
 <h3 id="commercial-style-waps">Commercial-style WAPs</h3>
 <p>One of the secondary motivations for this project was that I was tired of consumer routers that have to be replaced annually or malfunction just enough to annoy but not enough to trigger replacement (like my old Asus router that needed weekly reboots to get the wireless working again). Once I implemented VLAN tagging, though, I realized that I really needed a more capable wireless access point that could handle it. I picked up an Engenius smoke-detector-style WAP with all the appropriate features, and while I’m not pleased with the performance of its management interface, it does appear to do the job, at least on the 2.4GHz band.  It does allow me to have multple SSIDs, each with its own authentication and VLAN tags. One issue encountered and overcome is that the WAP had a “rapid handoff” mode that caused it to drop connections below a certain signal strength threshold in order to encourage devices to connect to a closer WAP. That doesn’t work well if you only have the one WAP! To do: implement proper 802.1X RADIUS authentication.</p>
 
 <h3 id="network-monitoring">Network Monitoring</h3>
-<p>I’ve got a VM running a wide range of network monitoring tools, though at the moment they’re all just barely at the “spun up” state, and I haven’t yet configured all the alerting/active response stuff that I want. Bro for packet/protocol inspection, Snort monitoring, &amp;c.<label for="sn-oamtbz6xdaa0" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-oamtbz6xdaa0" class="margin-toggle" /><span class="sidenote">$30/year for the Snort VRT rule updates for home users? Stupid cheap. </span></p>
+<p>I’ve got a VM running a wide range of network monitoring tools, though at the moment they’re all just barely at the “spun up” state, and I haven’t yet configured all the alerting/active response stuff that I want. Bro for packet/protocol inspection, Snort monitoring, &amp;c.<label for="sn-ermg22mn089p" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-ermg22mn089p" class="margin-toggle" /><span class="sidenote">$30/year for the Snort VRT rule updates for home users? Stupid cheap. </span></p>
 
 		]]></description>
         <pubDate>Sat, 24 Oct 2015 00:00:00 -0700</pubDate>
@@ -104,12 +125,12 @@
 <p>This isn’t just a complaint about being away from home and family for a week at a stretch. That’s manageable. The amount of time spent learning at these courses, however, is problematic. It wasn’t unusual for me to spend from 0830 to 2130 in the convention center, between the course itself and the evening lectures and tournament. After a week of this I was really ready for some natural light and fresh air. I know there’s a lot of material to cover, but it’s hard to keep sharp for that many hours at a time even with breaks.</p>
 
 <h3 id="a-week-is-a-very-short-time-for-a-meaningful-class">A week is a very short time for a meaningful class.</h3>
-<p>There’s a huge amount of material to cover in an overview class, and a week just plain isn’t long enough to do it justice. So many topics were breezed through with just top-level bullet points. So many of the labs would have been more useful if we had to really dig in to them and do some analysis rather than just copying and pasting into a terminal. Our instructor definitely enriched the course with humorous and enlightening anecdotes and suggestions,<label for="sn-1axlw32fg8v6" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-1axlw32fg8v6" class="margin-toggle" /><span class="sidenote">Of course, the discussions of virtualization and testing labs are going to result in some rather expensive purchases. C’est la vie. </span> but had he just gone off the slides I would have felt cheated by the cursory treatment of the subject areas.</p>
+<p>There’s a huge amount of material to cover in an overview class, and a week just plain isn’t long enough to do it justice. So many topics were breezed through with just top-level bullet points. So many of the labs would have been more useful if we had to really dig in to them and do some analysis rather than just copying and pasting into a terminal. Our instructor definitely enriched the course with humorous and enlightening anecdotes and suggestions,<label for="sn-gmfzm0hnt19l" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-gmfzm0hnt19l" class="margin-toggle" /><span class="sidenote">Of course, the discussions of virtualization and testing labs are going to result in some rather expensive purchases. C’est la vie. </span> but had he just gone off the slides I would have felt cheated by the cursory treatment of the subject areas.</p>
 
 <h3 id="netwars-is-a-ton-of-fun">NetWars is a ton of fun.</h3>
-<p>In addition to SEC501, I also signed up for <a href="https://www.sans.org/netwars/dfir-tournament">NetWars DFIR</a> because hey, why not, it’s free with the longform training course. This turned out to be the most entertaining and educational part of the entire trip. I hadn’t touched a computer forensics tool in my life before the day of the tournament, but due to convenient timing of the SEC501 topics, we did a quick overview of forensics tools the day the tournament started. Picture my surprise when I found myself on the leaderboard (10th place) after the first day. On the second day people jumped ahead super quickly,<label for="sn-k26v3xwp7nk8" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-k26v3xwp7nk8" class="margin-toggle" /><span class="sidenote">I won’t accuse them of working on the questions during the day, but it was pretty suspicious </span> but I still managed to come in 14th out of about 75 participants. I had no idea that digging information out of hard disk, memory, server logs, and network pcap data would be so much fun. This will be a career-influencing experience.</p>
+<p>In addition to SEC501, I also signed up for <a href="https://www.sans.org/netwars/dfir-tournament">NetWars DFIR</a> because hey, why not, it’s free with the longform training course. This turned out to be the most entertaining and educational part of the entire trip. I hadn’t touched a computer forensics tool in my life before the day of the tournament, but due to convenient timing of the SEC501 topics, we did a quick overview of forensics tools the day the tournament started. Picture my surprise when I found myself on the leaderboard (10th place) after the first day. On the second day people jumped ahead super quickly,<label for="sn-cc1n4uoo9op4" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-cc1n4uoo9op4" class="margin-toggle" /><span class="sidenote">I won’t accuse them of working on the questions during the day, but it was pretty suspicious </span> but I still managed to come in 14th out of about 75 participants. I had no idea that digging information out of hard disk, memory, server logs, and network pcap data would be so much fun. This will be a career-influencing experience.</p>
 
 <p>That’s it for my quick reflections. I may well have additional posts to write on the various topics discussed during the class. I would like to thank <a href="https://twitter.com/phenrycissp">Paul Henry</a> for leading a fun and educational intro to InfoSec. I look forward to future, more specialized and detailed classes.</p>
 
@@ -123,8 +144,8 @@
         <title>Identifying PCI devices in Powershell</title>
         <author>Jeremy Tavan</author>
         <description><![CDATA[
-		   <p>I had a need recently to identify the device that failed on a Dell server. The server reported the failure in terms of PCI Bus, Device, and Function. Unfortunately, unlike Linux with its <code>lspci(8)</code>, Windows doesn’t expose those very easily. The Dell technician suggested installing and running their diagnostic gathering tool on the server, but given protections in place on the server it would have taken some time to do so.<label for="sn-pp6ri4lui63n" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-pp6ri4lui63n" class="margin-toggle" /><span class="sidenote">It should be noted that finding the code to obtain this information took at least as long as whitelisting the tool and running it would have, but was much more educational. </span> A little searching on the Internet and a little assembly of code resulted in the following:</p>
+		   <p>I had a need recently to identify the device that failed on a Dell server. The server reported the failure in terms of PCI Bus, Device, and Function. Unfortunately, unlike Linux with its <code>lspci(8)</code>, Windows doesn’t expose those very easily. The Dell technician suggested installing and running their diagnostic gathering tool on the server, but given protections in place on the server it would have taken some time to do so.<label for="sn-cpw6pp8ofo2h" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-cpw6pp8ofo2h" class="margin-toggle" /><span class="sidenote">It should be noted that finding the code to obtain this information took at least as long as whitelisting the tool and running it would have, but was much more educational. </span> A little searching on the Internet and a little assembly of code resulted in the following:</p>
 
 <figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><a name="True-1"></a><span class="k">Function</span> <span class="nb">Resolve-PCIBusInfo</span> <span class="p">{</span>
 <a name="True-2"></a>    <span class="k">param</span> <span class="p">(</span>
@@ -203,8 +224,8 @@
 
 <p>Now all I need to do to create a sidenote is to put in a liquid tag:</p>
 <pre>{.% sidenote And sidenote text goes here %}</pre>
-<p>and it gets converted into a proper sidenote.<label for="sn-n9i2oxjgbll3" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-n9i2oxjgbll3" class="margin-toggle" /><span class="sidenote">Just like this. </span></p>
+<p>and it gets converted into a proper sidenote.<label for="sn-axvmukfgwdk6" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-axvmukfgwdk6" class="margin-toggle" /><span class="sidenote">Just like this. </span></p>
 
 		]]></description>
         <pubDate>Thu, 20 Aug 2015 00:00:00 -0700</pubDate>
@@ -218,8 +239,8 @@
         <description><![CDATA[
 		   <p>I’m having a good time figuring out how to build a static page blog using <a href="http://jekyllrb.com/">Jekyll</a>, but there are a few pieces missing for it to really do what I need.</p>
 
-<p>First, I’m trying to use <a href="http://www.daveliepmann.com/tufte-css/">Tufte.css</a> for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.<label for="sn-oainwdg54s65" class="margin-toggle sidenote-number"></label>
-<input type="checkbox" id="sn-oainwdg54s65" class="margin-toggle" /><span class="sidenote">That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. </span></p>
+<p>First, I’m trying to use <a href="http://www.daveliepmann.com/tufte-css/">Tufte.css</a> for the look and feel of the pages because I haven’t seen anything more readable or pleasing to the eyes. Unfortunately, certain features like sidenotes and marginnotes require some funky inline HTML to work, and I haven’t figure out how to embed them automatically in the Markdown or Textile post data sources.<label for="sn-98v79lw10vo6" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-98v79lw10vo6" class="margin-toggle" /><span class="sidenote">That said, I can just embed the raw HTML in Markdown content if I’m OK with all that structure mixed in to my content. </span></p>
 
 <p>So it looks like I’m going to need to build a custom filter to allow me to use simple directives and have them convert into appropriate sidenote and marginnote HTML. <strong>Update</strong>: Done. See <a href="/2015/08/20/Custom%20Jekyll%20liquid%20tag.html">this post</a> for details.</p>
 
