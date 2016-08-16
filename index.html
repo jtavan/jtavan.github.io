@@ -17,28 +17,32 @@
 		<hr/>
 		
 			<section>
-			<p><label for="mn-tmwkm4io2nix" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-tmwkm4io2nix" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/security">security</a>&nbsp;<a href="/tag/linux">linux</a>&nbsp;</span></p>
+			<p><label for="mn-h9thuy9ojsa" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-h9thuy9ojsa" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/security">security</a>&nbsp;<a href="/tag/linux">linux</a>&nbsp;</span></p>
 			<h2><a href="/2016/08/13/Linux-Admins.html">What Makes a Linux Admin</a></h2> <br/>
 			13 August 2016
 			
-			<p>In both Windows and MacOS, the definition of an “administrator” account is fairly easy. Under Windows, you look at the Administrators group. On MacOS there are a few ways to enumerate admins, but it all boils down to the users who have the “Allow user to administer this computer” checkbox checked. Under Linux, things aren’t so straightforward. How would one define a Linux admin account for purposes of inventory and monitoring? I started thinking about this recently and came up with the following definition, which is definitely a work in progress:</p>
+			<p>I’m sorry if the title of this post sounds like I’m going to get all philosophical and start discussing the skills and personal characteristics that make someone a true Linux administrator. That’s not what this is about. Instead, it’s a lot more prosaic. If you’re using endpoint management software to track servers, and you want to audit the list of accounts with administrative privileges on a system, how do you do it?</p>
+
+<p>In both Windows and MacOS, the definition of an “administrator” account is fairly easy. Under Windows, you look at the Administrators group. On MacOS there are a few ways to enumerate admins, but it all boils down to the users who have the “Allow user to administer this computer” checkbox checked.<label for="sn-4ibuk619x8up" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-4ibuk619x8up" class="margin-toggle" /><span class="sidenote">Of course, as Unix systems, Macs also are subject to many of the criteria in the definition below. </span> Under Linux, things aren’t so straightforward. How would one define a Linux admin account for purposes of inventory and monitoring? I started thinking about this recently and came up with the following definition, which is definitely a work in progress:</p>
 
 <p>An administrator of a Linux server is any user that meets any of the following definitions:</p>
 
 <ol>
   <li>Is UID 0</li>
-  <li>Is a member of the group ‘wheel’ or ‘admin’ or ‘administrators’ or ‘root’</li>
+  <li>Is a member of the group <code>wheel</code> or <code>admin</code> or <code>administrators</code> or <code>root</code> <label for="sn-jh7sqrsi69ry" class="margin-toggle sidenote-number"></label>
+<input type="checkbox" id="sn-jh7sqrsi69ry" class="margin-toggle" /><span class="sidenote">I know the oldschool UNIX admins are going to yell at me for these group names. Sorry.</span></li>
   <li>Exists in the sudoers file with an ALL permission line</li>
   <li>Exists in a group that exists in the sudoers file with an ALL permission line</li>
   <li>Exists in the <code>.k5login</code> file of any user account meeting any of criteria 1-4</li>
 </ol>
 
-<p>There must be other criteria I’m missing, but this seems like a good place to start.</p>
+<p>There are certainly other criteria which would be functionally equivalent to the above (for example, any user that can edit the sudoers file), but this seems like a good place to start for machines that are set up somewhat normally and not already compromised. I have BigFix relevance code for 1-4 on the list, which is complicated enough, and support for inspecting <code>/root/.k5login</code>, but haven’t yet implemented the full (5) successfully.</p>
 
 			</section>
 		
 			<section>
-			<p><label for="mn-sjj12uw4zrmf" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-sjj12uw4zrmf" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/security">security</a>&nbsp;<a href="/tag/development">development</a>&nbsp;</span></p>
+			<p><label for="mn-7ia5zj1t7nlq" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-7ia5zj1t7nlq" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/security">security</a>&nbsp;<a href="/tag/development">development</a>&nbsp;</span></p>
 			<h2><a href="/2016/01/29/I-Figured-Out-The-Mystery.html">I figured out the mystery!</a></h2> <br/>
 			29 January 2016
 			
@@ -61,7 +65,7 @@
 			</section>
 		
 			<section>
-			<p><label for="mn-i9l0qkci8rij" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-i9l0qkci8rij" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/organizations">organizations</a>&nbsp;<a href="/tag/humor">humor</a>&nbsp;</span></p>
+			<p><label for="mn-tgjtrelr20ha" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-tgjtrelr20ha" class="margin-toggle"/><span class="marginnote tags">Tags: <a href="/tag/organizations">organizations</a>&nbsp;<a href="/tag/humor">humor</a>&nbsp;</span></p>
 			<h2><a href="/2015/11/09/Stages-of-Maturity.html">Stages of Maturity</a></h2> <br/>
 			9 November 2015
 			
